@@ -32,5 +32,8 @@ If we had kept the cropping logic, since the image1 is so large, the crop would 
 Make the merged photo's size be relative to the number of photos in the array (i.e. if there are 4 photos, make the merged photo 2x2, if there are 6 photos, still make it be 2x2 until there are at least 9 photos (then make it 3x3)). This change gives us the same image as before so its still good :+1
 ![image](test-images/test-n-by-n-size.jpeg)
 
+Added some psuedo code for how adding the photos in matrix like pattern should work. For now, I've harded coded the placements for th 2x2 case and success! it looks beautiful: 
+![image](/test-images/test-hard-code-image-placement.jpeg)
+
 ### Next step: 
-Try a bunch more photos! 
+Convert pseudo code into actual code -- i.e. make the photo be built dynamically in the form of a matrix of the images array. 

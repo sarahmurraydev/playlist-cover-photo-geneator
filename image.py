@@ -40,9 +40,24 @@ def make_image():
     newImage = Image.new('RGB', (n*sm_width, n*sm_height), 0)
     ## loop through images and add them 
 
-    newImage.paste(resized_images[0], (0,0))
+    # ADD PHOTOS LIKE THIS:
+    # 1) Add the initial photo at (0, 0)
+    # 2) add one photo next to it 
+    # 3) add one photo below it 
+    # set the default matrix to now be (w, h) and repeat steps 1-3
+    # when the last item in row and column N have been filled out, add the last image at (n*w, n*h)
+
+    newImage.paste(resized_images[0], (0,0)) 
     newImage.paste(resized_images[1], (sm_width,0))
-    image_name = "./test-images/test-n-by-n-size.jpeg"
+    newImage.paste(resized_images[2], (0,sm_height))
+    newImage.paste(resized_images[3], (sm_width, sm_height))
+    ## we are on the thrid column / row
+    # newImage.paste(resized_images[4], (2*sm_width, 0))
+    # newImage.paste(resized_images[5], (0, 2*sm_height))
+    # newImage.paste(resized_images[6], (2*sm_width, 2*sm_height))
+
+
+    image_name = "./test-images/test-hard-code-image-placement.jpeg"
     newImage.save(image_name)
     newImage.show()
 
