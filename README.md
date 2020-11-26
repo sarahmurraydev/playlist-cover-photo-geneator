@@ -8,10 +8,14 @@ Have spotify autogenerate a profile photo based on the songs added (like it curr
 
 
 ## Development: 
-Latest status of the code: 
 
-We generate a photo that is a merge of two photos: 
+### Latest status of the code: 
+
+We have been able generate a photo that is a merge of two photos: 
 ![image](test-images/testMerge2&3.jpeg)
 
-Next step: 
-ensure images are the same size before merging
+Add now with the latest commit, we ensure images are the same size before merging: 
+![image](test-images/testMerge2&3-make-images-same-size.jpeg)
+
+### Next step: 
+Try a bunch more photos! 

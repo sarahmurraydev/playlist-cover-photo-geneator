@@ -1,6 +1,6 @@
 from flask import Flask 
 from flask import jsonify
-from image import makeImage
+from image import make_image
 
 app = Flask( __name__ )
 
@@ -10,7 +10,7 @@ def home():
 
 @app.route('/image')
 def image():
-    makeImage()
+    make_image()
     return "Successfully made the image!"
 
 if __name__ == '__main__': 
