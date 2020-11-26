@@ -5,3 +5,13 @@ Have spotify autogenerate a profile photo based on the songs added (like it curr
 1) Create a photo editor that takes in an array of 2n photos and outputs a n by n cover photo. 
 2) Ability to connect to spotify 
 
+
+
+## Development: 
+Latest status of the code: 
+
+We generate a photo that is a merge of two photos: 
+![image](test-images/testMerge2&3.jpeg)
+
+Next step: 
+ensure images are the same size before merging
