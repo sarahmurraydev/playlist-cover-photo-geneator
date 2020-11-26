@@ -29,5 +29,8 @@ For example, in the next commit, we add the logic to import all the photos. Now 
 If we had kept the cropping logic, since the image1 is so large, the crop would have cause a weird zoomed in effect, giving us this collage: 
 ![image](test-images/testMergeALL-with-crop.jpeg)
 
+Make the merged photo's size be relative to the number of photos in the array (i.e. if there are 4 photos, make the merged photo 2x2, if there are 6 photos, still make it be 2x2 until there are at least 9 photos (then make it 3x3)). This change gives us the same image as before so its still good :+1
+![image](test-images/test-n-by-n-size.jpeg)
+
 ### Next step: 
 Try a bunch more photos! 

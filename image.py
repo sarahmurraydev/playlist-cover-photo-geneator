@@ -1,4 +1,5 @@
 from PIL import Image
+import math 
 
 def make_image():
     # get the images 
@@ -32,11 +33,16 @@ def make_image():
         # add the cropped images to the array
         resized_images.append(resized_im)
 
-    ## make the new image  
-    newImage = Image.new('RGB', (2*sm_width, 2*sm_height), 0)
+    ## make the new image that is a matrix of the images array
+    ## the matrix will be an n by n matrix where n = (sq rt of length of photos array)
+    # take the floor so the matrix is always n x n ; i.e. if I have 6 photos, only show 4 until I have 9 photos
+    n = math.floor(math.sqrt(len(resized_images))) 
+    newImage = Image.new('RGB', (n*sm_width, n*sm_height), 0)
+    ## loop through images and add them 
+
     newImage.paste(resized_images[0], (0,0))
     newImage.paste(resized_images[1], (sm_width,0))
-    image_name = "./test-images/testMerge2&3-make-images-same-size-VIA-resize.jpeg"
+    image_name = "./test-images/test-n-by-n-size.jpeg"
     newImage.save(image_name)
     newImage.show()
 
