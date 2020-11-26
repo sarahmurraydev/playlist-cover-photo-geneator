@@ -10,8 +10,9 @@ def home():
 
 @app.route('/image')
 def image():
-    make_image()
-    return "Successfully made the image!"
+    name = make_image()
+    result = "Successfully made the image called: {}!"
+    return result.format(name)
 
 if __name__ == '__main__': 
     app.run( debug=True )
