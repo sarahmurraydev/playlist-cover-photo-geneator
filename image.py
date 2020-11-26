@@ -2,11 +2,13 @@ from PIL import Image
 
 def make_image():
     # get the images 
-    image2 = Image.open("./test-images/image2.jpeg")
-    image3 = Image.open("./test-images/image3.jpeg")
-
-    # make an array 
-    images = [image2, image3]
+    images = []
+    base_path = "./test-images/image{}.jpeg"
+    for i in range(6):
+        current_image_path = base_path.format((i+1))
+        print("Getting the image at" + current_image_path)
+        image = Image.open(current_image_path)
+        images.append(image)
 
     ## set the initial variables to be based on image1
     sm_width = images[0].size[0]
