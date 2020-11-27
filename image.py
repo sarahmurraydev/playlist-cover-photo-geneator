@@ -1,15 +1,20 @@
 from PIL import Image
 import math 
 
-def make_image():
-    # get the images 
+def get_images(n):
+    # get the images (there are n of them)
     images = []
     base_path = "./test-images/image{}.jpeg"
-    for i in range(9):
+    for i in range(n):
         current_image_path = base_path.format((i+1))
         print("Getting the image at" + current_image_path)
         image = Image.open(current_image_path)
         images.append(image)
+
+    return images
+
+def make_image():
+    images = get_images(9)
 
     ## set the initial variables to be based on image1
     sm_width = images[0].size[0]
@@ -37,7 +42,7 @@ def make_image():
     ## the matrix will be an n by n matrix where n = (sq rt of length of photos array)
     # take the floor so the matrix is always n x n ; i.e. if I have 6 photos, only show 4 until I have 9 photos
     n = math.floor(math.sqrt(len(resized_images))) 
-    newImage = Image.new('RGB', (n*sm_width, n*sm_height), 0)
+    new_image = Image.new('RGB', (n*sm_width, n*sm_height), 0)
     ## loop through images and add them 
 
     image_index = 0
@@ -50,11 +55,11 @@ def make_image():
             x_dim = sm_width * row
             y_dim = sm_height * column 
 
-            newImage.paste(image_adding, (x_dim, y_dim))
+            new_image.paste(image_adding, (x_dim, y_dim))
             image_index+=1 # increament image index for next photo
 
     image_name = "./test-images/test-make-matrix-with-more-photos.jpeg"
-    newImage.save(image_name)
-    newImage.show()
+    new_image.save(image_name)
+    new_image.show()
 
     return image_name
