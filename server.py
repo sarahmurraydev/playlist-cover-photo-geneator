@@ -32,6 +32,15 @@ def callback():
     # got token
     return "We\'ve got the token!"
 
+@app.route('/me')
+def get_user_data():
+    print("token header:")
+    print(TOKEN_DATA[1])
+    data = get_me(TOKEN_DATA[1])
+    print("spotify data:")
+    print(data)
+    return "HERE's my data: {}".format(data)
+
 @app.route('/home')
 def home():
     return "Hello World! Welcome to Sarah's Playlist Photo Generator App"
