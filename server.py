@@ -1,19 +1,34 @@
-from flask import Flask 
-from flask import jsonify
+import os
+from dotenv import load_dotenv
+from flask import Flask, jsonify, redirect, request
 from image import make_image
-from auth import get_user
-from auth get_user_token
+from auth import get_auth_url, get_token
+from spotify import get_me
+
+
+path = os.path.dirname(os.path.abspath(__file__))
+project_folder = os.path.expanduser(path)
+load_dotenv(os.path.join(project_folder, '.env'))
+
+TOKEN_DATA = []
 
 app = Flask( __name__ )
 
 @app.route('/')
 def index():
-    response = auth.get_user()
-    return redirect(response)
+    # when the user hits the index endpoint, 
+    # redirect them to spotfiy to approve our app
+    # redirect url is unique to this app
+    app_auth_url = get_auth_url()
+    print("redirecting you to:")
+    print(app_auth_url)
+    return redirect(app_auth_url)
 
-@app.route('/callback/')
+@app.route('/callback')
 def callback():
-    auth.get_user_token(request.args['code'])
+    # use the auth code returned from app_auth_url to get a token
+    global TOKEN_DATA
+    TOKEN_DATA = get_token(request.args.get('code'))
     # got token
     return "We\'ve got the token!"
 
