@@ -33,7 +33,10 @@ Make the merged photo's size be relative to the number of photos in the array (i
 ![image](test-images/test-n-by-n-size.jpeg)
 
 Added some psuedo code for how adding the photos in matrix like pattern should work. For now, I've harded coded the placements for th 2x2 case and success! it looks beautiful: 
-![image](/test-images/test-hard-code-image-placement.jpeg)
+![image](/test-images/test-hard-code-image-placement.jpeg) 
+
+I got the matrix working!! and the results are the same as the hardcoded one so :tada! 
+![image](test-images/test-make-matrix-placement.jpeg)
 
 ### Next step: 
-Convert pseudo code into actual code -- i.e. make the photo be built dynamically in the form of a matrix of the images array. 
+test with more photos!

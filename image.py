@@ -40,24 +40,20 @@ def make_image():
     newImage = Image.new('RGB', (n*sm_width, n*sm_height), 0)
     ## loop through images and add them 
 
-    # ADD PHOTOS LIKE THIS:
-    # 1) Add the initial photo at (0, 0)
-    # 2) add one photo next to it 
-    # 3) add one photo below it 
-    # set the default matrix to now be (w, h) and repeat steps 1-3
-    # when the last item in row and column N have been filled out, add the last image at (n*w, n*h)
+    image_index = 0
+    
+    for column in range(n):
+        for row in range(n):
+            # current image, adding to the collage: 
+            image_adding = resized_images[image_index]
 
-    newImage.paste(resized_images[0], (0,0)) 
-    newImage.paste(resized_images[1], (sm_width,0))
-    newImage.paste(resized_images[2], (0,sm_height))
-    newImage.paste(resized_images[3], (sm_width, sm_height))
-    ## we are on the thrid column / row
-    # newImage.paste(resized_images[4], (2*sm_width, 0))
-    # newImage.paste(resized_images[5], (0, 2*sm_height))
-    # newImage.paste(resized_images[6], (2*sm_width, 2*sm_height))
+            x_dim = sm_width * row
+            y_dim = sm_height * column 
 
+            newImage.paste(image_adding, (x_dim, y_dim))
+            image_index+=1 # increament image index for next photo
 
-    image_name = "./test-images/test-hard-code-image-placement.jpeg"
+    image_name = "./test-images/test-make-matrix-placement.jpeg"
     newImage.save(image_name)
     newImage.show()
 
