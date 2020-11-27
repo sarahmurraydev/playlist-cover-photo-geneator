@@ -38,5 +38,8 @@ Added some psuedo code for how adding the photos in matrix like pattern should w
 I got the matrix working!! and the results are the same as the hardcoded one so :tada! 
 ![image](test-images/test-make-matrix-placement.jpeg)
 
+More images still look great! (even when some are odd shapes -- not square)
+![image](test-images/test-make-matrix-with-more-photos.jpeg)
+
 ### Next step: 
-test with more photos!
+Integrate with spotify!

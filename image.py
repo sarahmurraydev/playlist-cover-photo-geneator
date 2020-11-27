@@ -5,7 +5,7 @@ def make_image():
     # get the images 
     images = []
     base_path = "./test-images/image{}.jpeg"
-    for i in range(6):
+    for i in range(9):
         current_image_path = base_path.format((i+1))
         print("Getting the image at" + current_image_path)
         image = Image.open(current_image_path)
@@ -53,7 +53,7 @@ def make_image():
             newImage.paste(image_adding, (x_dim, y_dim))
             image_index+=1 # increament image index for next photo
 
-    image_name = "./test-images/test-make-matrix-placement.jpeg"
+    image_name = "./test-images/test-make-matrix-with-more-photos.jpeg"
     newImage.save(image_name)
     newImage.show()
 
