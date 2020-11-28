@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, request
 from image import make_image
 from auth import get_auth_url, get_token
-from spotify import get_me, get_playlist_items
+from spotify import get_me, get_playlist_items, get_album_cover_photos
 
 
 path = os.path.dirname(os.path.abspath(__file__))
@@ -39,8 +39,13 @@ def get_user_data():
 
 @app.route('/playlist-items/<id>')
 # id: 4a0C47OlHU0KKNxySw8NU7
-def get_items(id):
+def get_item_photos(id):
     data = get_playlist_items(id, TOKEN_DATA[1])
+    return data
+
+@app.route('/playlist/track-photos/<id>')
+def get_items(id):
+    data = get_album_cover_photos(id, TOKEN_DATA[1])
     return data
   
 @app.route('/home')

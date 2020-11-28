@@ -17,10 +17,19 @@ def get_playlist_items(id, headers):
     return json.loads(playlist_items.text)
 
 # get album covers for the items from the playlist
-def get_album_cover_photos(tracks):
-    photos = []
-    return photos
+def get_album_cover_photos(id, headers):
+    image_urls = []
+    data = get_playlist_items(id, headers)
+    tracks = data["items"]
+    for i in range(len(tracks)):
+        # get the 300 x 300 image url
+        image_url = tracks[i]["track"]["album"]["images"][1]["url"]
+        # check if this image is in our array already 
+        if image_url in image_urls: 
+            print("this is already in our list")
+        else: 
+            image_urls.append(image_url)
 
-
-# def put_playlist_cover_photo(id):
-    
+    # once done, make a dictionary to return
+    response_dict = { 'urls': image_urls }
+    return response_dict
