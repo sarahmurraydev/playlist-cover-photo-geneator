@@ -1,5 +1,7 @@
-from PIL import Image
 import math 
+import requests
+from PIL import Image
+from io import BytesIO
 
 def get_images(n):
     # get the images (there are n of them)
@@ -13,8 +15,27 @@ def get_images(n):
 
     return images
 
+def get_spotify_images(): 
+    # im_urls = get_album_cover_photos(id, headers)
+    urls = [
+        "https://i.scdn.co/image/ab67616d00001e027a631bb63b905980cc94f40e",
+        "https://i.scdn.co/image/ab67616d00001e02bb57d74e709f65720a537849",
+        "https://i.scdn.co/image/ab67616d00001e02309b0cb81728d42a6dfb2b81",
+        "https://i.scdn.co/image/ab67616d00001e02421325b3842bc2f4cf65f1d3",
+    ]
+
+    images = []
+    for i in range(len(urls)):
+        current_image_url = urls[i]
+        print("Getting the image at " + current_image_url)
+        response = requests.get(current_image_url)
+        image = Image.open(BytesIO(response.content))
+        images.append(image)
+
+    return images
+
 def make_image():
-    images = get_images(9)
+    images = get_spotify_images()
 
     ## set the initial variables to be based on image1
     sm_width = images[0].size[0]
@@ -58,7 +79,7 @@ def make_image():
             new_image.paste(image_adding, (x_dim, y_dim))
             image_index+=1 # increament image index for next photo
 
-    image_name = "./test-images/test-make-matrix-with-more-photos.jpeg"
+    image_name = "./test-images/spotify-test-1.jpeg"
     new_image.save(image_name)
     new_image.show()
 

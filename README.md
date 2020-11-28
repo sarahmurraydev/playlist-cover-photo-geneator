@@ -41,5 +41,18 @@ I got the matrix working!! and the results are the same as the hardcoded one so 
 More images still look great! (even when some are odd shapes -- not square)
 ![image](test-images/test-make-matrix-with-more-photos.jpeg)
 
-### Next step: 
-Integrate with spotify!
+I've added the spotify api and am able to create an image of of hardcoded urls (I fetched from spotify)
+![image](./test-images/spotify-test-1.jpeg)
+
+### Next steps: 
+Cleanup code and have the routes feed off each other better. 
+Route suggestions: 
+* `/playlist-items/<id>`: returns list of items from a given playlist
+* `/photo-urls-from-playlist/<id>`: returns an array of unique photo urls for a given playlist
+* `/make-photo-from-playlist/<id>`: returns a photo matrix of cover photos of the songs on a given playlist
+
+The first two routes are for easy access to these data elements (seeing them if I need / want to). 
+
+The third route is the purpose of our app! 
+
+TODO: build out the POST route which adds the playlist image to the given playlist. then add this to the `/make-photo-from-playlist/<id>` route
