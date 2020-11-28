@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, request
-from image import make_image
+from image import make_image, get_spotify_images
 from auth import get_auth_url, get_token
 from spotify import get_me, get_playlist_items, get_album_cover_photos
 
@@ -20,8 +20,6 @@ def index():
     # redirect them to spotfiy to approve our app
     # redirect url is unique to this app
     app_auth_url = get_auth_url()
-    print("redirecting you to:")
-    print(app_auth_url)
     return redirect(app_auth_url)
 
 @app.route('/callback')
@@ -52,9 +50,10 @@ def get_items(id):
 def home():
     return "Hello World! Welcome to Sarah's Playlist Photo Generator App"
 
-@app.route('/image')
-def image():
-    name = make_image()
+@app.route('/image/<id>')
+def image(id):
+    images = get_spotify_images(id, TOKEN_DATA[1])
+    name = make_image(images)
     result = "Successfully made the image called: {}!"
     return result.format(name)
 

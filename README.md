@@ -44,6 +44,15 @@ More images still look great! (even when some are odd shapes -- not square)
 I've added the spotify api and am able to create an image of of hardcoded urls (I fetched from spotify)
 ![image](./test-images/spotify-test-1.jpeg)
 
+update: 
+Add the ability to get the image urls dynamically from our urls endpoint! I've testes it with another playlist and even made it again after reordering some songs
+
+first test dynamically from spotify: 
+![image](test-images/spotify-test-2.jpeg)
+
+second dynamic test: 
+![image](test-images/spotify-test-3.jpeg)
+
 ### Next steps: 
 Cleanup code and have the routes feed off each other better. 
 Route suggestions: 
