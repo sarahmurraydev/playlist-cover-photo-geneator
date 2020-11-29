@@ -26,10 +26,13 @@ def get_album_cover_photos(id, headers):
         image_url = tracks[i]["track"]["album"]["images"][1]["url"]
         # check if this image is in our array already 
         if image_url in image_urls: 
-            print("this is already in our list")
+            print("{} is already in our list".format(image_url))
         else: 
             image_urls.append(image_url)
 
     # once done, make a dictionary to return
-    response_dict = { 'urls': image_urls }
+    response_dict = { 
+        'urls': image_urls,
+        'length': len(image_urls)
+    }
     return response_dict
