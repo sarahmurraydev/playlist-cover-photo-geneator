@@ -9,11 +9,12 @@ REFRESH_TOKEN = ''
 CLIENT_ID = os.environ["CLIENT_ID"]
 CLIENT_SECRET = os.environ["CLIENT_SECRET"]
 CALLBACK_URL = "http://localhost:5000/callback"
+SCOPES="ugc-image-upload playlist-modify-public"
 
 # authorization code for spotify app
 def get_auth_url():
-    base_uri = "{}client_id={}&response_type=code&redirect_uri={}"
-    return base_uri.format(SPOTIFY_URL_AUTH, CLIENT_ID, CALLBACK_URL)
+    base_uri = "{}client_id={}&response_type=code&redirect_uri={}&scope={}"
+    return base_uri.format(SPOTIFY_URL_AUTH, CLIENT_ID, CALLBACK_URL, SCOPES)
 
 
 def get_token(code):
