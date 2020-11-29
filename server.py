@@ -54,9 +54,6 @@ def home():
 def image(id):
     images = get_spotify_images(id, TOKEN_DATA[1])
     name = make_image(images)
-    print("+++++++++++++++++++++++++++++++++++++++")
-    print("Successfully made the image called: {}!".format(name))
-    print("+++++++++++++++++++++++++++++++++++++++")
     result = put_playlist_photo(id, TOKEN_DATA[1], name)
     return result
 

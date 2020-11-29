@@ -53,15 +53,14 @@ first test dynamically from spotify:
 second dynamic test: 
 ![image](test-images/spotify-test-3.jpeg)
 
+
+update: 
+Adding the PUT playlist photo endpoint and it worked!! 
+Check out the cover photo on: https://open.spotify.com/playlist/4a0C47OlHU0KKNxySw8NU7?si=VJDKELVWQSWtwHtMOgyUzg 
+
 ### Next steps: 
 Cleanup code and have the routes feed off each other better. 
 Route suggestions: 
 * `/playlist-items/<id>`: returns list of items from a given playlist
 * `/photo-urls-from-playlist/<id>`: returns an array of unique photo urls for a given playlist
 * `/make-photo-from-playlist/<id>`: returns a photo matrix of cover photos of the songs on a given playlist
-
-The first two routes are for easy access to these data elements (seeing them if I need / want to). 
-
-The third route is the purpose of our app! 
-
-TODO: build out the POST route which adds the playlist image to the given playlist. then add this to the `/make-photo-from-playlist/<id>` route

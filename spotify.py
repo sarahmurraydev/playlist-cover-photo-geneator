@@ -43,13 +43,7 @@ def put_playlist_photo(id, headers, image_name):
      uri = PUT_PLAYLIST_IMAGE.format(id)
      ## add content type to header:
      headers['Content-Type'] = 'image/jpeg'
-     files = { 'image': open(image_name, 'rb') }
-     print("type of files")
-     print(type(files))
-     data = requests.put(uri, files = files, headers=headers)
-     print("We posted the image: {}".format(image_name))
-     print("====================")
-     print("the response:")
-     print(data)
-     print("====================")
-     return data.text
+     with open(image_name, 'rb') as image_file:
+         image_b64 = base64.b64encode(image_file.read())
+     response = requests.put(uri, data = image_b64, headers=headers)
+     return response.text
