@@ -4,6 +4,8 @@ GET_ME = "https://api.spotify.com/v1/me"
 
 GET_PLAYLIST_ITEMS = "https://api.spotify.com/v1/playlists/{}/tracks"
 
+PUT_PLAYLIST_IMAGE = "https://api.spotify.com/v1/playlists/{}/images"
+
 def get_me(headers):
     user_data = requests.get(GET_ME_URL, headers=headers)
     return json.loads(user_data.text)
@@ -36,3 +38,18 @@ def get_album_cover_photos(id, headers):
         'length': len(image_urls)
     }
     return response_dict
+
+def put_playlist_photo(id, headers, image_name): 
+     uri = PUT_PLAYLIST_IMAGE.format(id)
+     ## add content type to header:
+     headers['Content-Type'] = 'image/jpeg'
+     files = { 'image': open(image_name, 'rb') }
+     print("type of files")
+     print(type(files))
+     data = requests.put(uri, files = files, headers=headers)
+     print("We posted the image: {}".format(image_name))
+     print("====================")
+     print("the response:")
+     print(data)
+     print("====================")
+     return data.text

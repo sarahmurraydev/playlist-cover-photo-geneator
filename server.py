@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, request
 from image import make_image, get_spotify_images
 from auth import get_auth_url, get_token
-from spotify import get_me, get_playlist_items, get_album_cover_photos
+from spotify import get_me, get_playlist_items, get_album_cover_photos, put_playlist_photo
 
 
 path = os.path.dirname(os.path.abspath(__file__))
@@ -54,8 +54,11 @@ def home():
 def image(id):
     images = get_spotify_images(id, TOKEN_DATA[1])
     name = make_image(images)
-    result = "Successfully made the image called: {}!"
-    return result.format(name)
+    print("+++++++++++++++++++++++++++++++++++++++")
+    print("Successfully made the image called: {}!".format(name))
+    print("+++++++++++++++++++++++++++++++++++++++")
+    result = put_playlist_photo(id, TOKEN_DATA[1], name)
+    return result
 
 if __name__ == '__main__': 
     app.run( debug=True )
