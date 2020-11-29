@@ -73,7 +73,7 @@ def make_image(images):
             new_image.paste(image_adding, (x_dim, y_dim))
             image_index+=1 # increament image index for next photo
 
-    image_name = "./test-images/spotify-test-3.jpeg"
+    image_name = "./test-images/spotify-test-5.jpeg"
     new_image.save(image_name)
     new_image.show()
 

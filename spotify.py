@@ -23,7 +23,7 @@ def get_album_cover_photos(id, headers):
     tracks = data["items"]
     for i in range(len(tracks)):
         # get the 300 x 300 image url
-        image_url = tracks[i]["track"]["album"]["images"][1]["url"]
+        image_url = tracks[i]["track"]["album"]["images"][2]["url"]
         # check if this image is in our array already 
         if image_url in image_urls: 
             print("{} is already in our list".format(image_url))
