@@ -30,7 +30,7 @@ def get_spotify_images(id, headers):
 
     return images
 
-def make_image(images):
+def make_image(id, images):
     ## set the initial variables to be based on image1
     sm_width = images[0].size[0]
     sm_height = images[0].size[1]
@@ -73,7 +73,7 @@ def make_image(images):
             new_image.paste(image_adding, (x_dim, y_dim))
             image_index+=1 # increament image index for next photo
 
-    image_name = "./test-images/spotify-test-5.jpeg"
+    image_name = "./cover-photos/playlist-{}.jpeg".format(id)
     new_image.save(image_name)
     new_image.show()
 
