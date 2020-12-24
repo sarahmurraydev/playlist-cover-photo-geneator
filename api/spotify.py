@@ -2,26 +2,31 @@ import base64, requests, json, os
 
 GET_ME = "https://api.spotify.com/v1/me"
 
+GET_PUBLIC_PLAYLISTS = "https://api.spotify.com/v1/me/playlists?limit={}&offset={}"
+
 GET_PLAYLIST_ITEMS = "https://api.spotify.com/v1/playlists/{}/tracks"
 
 PUT_PLAYLIST_IMAGE = "https://api.spotify.com/v1/playlists/{}/images"
 
 def get_me(headers):
-    user_data = requests.get(GET_ME_URL, headers=headers)
+    user_data = requests.get(GET_ME, headers=headers)
     return json.loads(user_data.text)
 
+def get_public_playlists(limit, offset, headers): 
+    uri = GET_PUBLIC_PLAYLISTS.format(limit, offset)
+    playlists = requests.get(uri, headers=headers)
+    return json.loads(playlists.text)
+
 # get a playlist items from playlist ID 
-# rainbow list: 73ZFTt2qSxfOyiyZTVNshC
-# today's top hits: 37i9dQZF1DXcBWIGoYBM5M
-def get_playlist_items(id, headers):
-    uri = GET_PLAYLIST_ITEMS.format(id)
+def get_playlist_items(playlist_id, headers):
+    uri = GET_PLAYLIST_ITEMS.format(playlist_id)
     playlist_items = requests.get(uri, headers=headers)
     return json.loads(playlist_items.text)
 
 # get album covers for the items from the playlist
-def get_album_cover_photos(id, headers):
+def get_album_cover_photos(album_id, headers):
     image_urls = []
-    data = get_playlist_items(id, headers)
+    data = get_playlist_items(album_id, headers)
     tracks = data["items"]
     for i in range(len(tracks)):
         # get the 300 x 300 image url
@@ -39,8 +44,8 @@ def get_album_cover_photos(id, headers):
     }
     return response_dict
 
-def put_playlist_photo(id, headers, image_name): 
-     uri = PUT_PLAYLIST_IMAGE.format(id)
+def put_playlist_photo(playlist_id, headers, image_name): 
+     uri = PUT_PLAYLIST_IMAGE.format(playlist_id)
      ## add content type to header:
      headers['Content-Type'] = 'image/jpeg'
      with open(image_name, 'rb') as image_file:
