@@ -1,18 +1,21 @@
 import os
+import json
 from dotenv import load_dotenv
-from flask import Flask, jsonify, redirect, request
+from flask import Flask, jsonify, redirect, request, session
 from image import make_image, get_spotify_images
 from auth import get_auth_url, get_token
 from spotify import get_me, get_playlist_items, get_album_cover_photos, put_playlist_photo, get_public_playlists
 
+# constants: 
+api_base_url: "https://localhost:5000/"
+ui_url = "http://localhost:3000"
 
 path = os.path.dirname(os.path.abspath(__file__))
 project_folder = os.path.expanduser(path)
 load_dotenv(os.path.join(project_folder, '.env'))
 
-TOKEN_DATA = []
-
 app = Flask( __name__ )
+app.secret_key = os.environ["SESSION_SECRET"]
 
 @app.route('/')
 def index():
@@ -24,11 +27,12 @@ def index():
 
 @app.route('/callback')
 def callback():
+    # session.clear()
     # use the auth code returned from app_auth_url to get a token
-    global TOKEN_DATA
-    TOKEN_DATA = get_token(request.args.get('code'))
-    # got token
-    return "We\'ve got the token!"
+    authorized = get_token(request.args.get('code'))
+    # user is authorized if token attribute exists, and is not empty 
+    print(authorized)
+    return redirect(ui_url)
 
 @app.route('/me')
 def get_user_data():

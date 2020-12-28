@@ -1,4 +1,5 @@
 import base64, json, requests, os
+from flask import session
 
 SPOTIFY_URL_AUTH = 'https://accounts.spotify.com/authorize/?'
 SPOTIFY_URL_TOKEN = 'https://accounts.spotify.com/api/token/'
@@ -31,10 +32,20 @@ def get_token(code):
 
     headers = {"Content-Type" : HEADER, "Authorization" : "Basic {}".format(encoded)}
 
-    post = requests.post(SPOTIFY_URL_TOKEN, params=body, headers=headers)
-    return handleToken(json.loads(post.text))
+    response = requests.post(SPOTIFY_URL_TOKEN, params=body, headers=headers)
+    if response.status_code == 200:
+        token = handleToken(json.loads(response.text))
+        session['token_data'] = token
+        return True
+    else: 
+        return False
     
 def handleToken(response):
-    auth_head = {"Authorization": "Bearer {}".format(response["access_token"])}
     REFRESH_TOKEN = response["refresh_token"]
-    return [response["access_token"], auth_head, response["scope"], response["expires_in"]]
+    TOKEN_DATA = { 
+        "token": response["access_token"], 
+        "Authorization": "Bearer {}".format(response["access_token"]),
+        "scope": response["scope"], 
+        "expires_in": response["expires_in"]
+    }
+    return TOKEN_DATA
