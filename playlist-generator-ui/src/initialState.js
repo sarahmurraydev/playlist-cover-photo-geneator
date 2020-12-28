@@ -1,5 +1,6 @@
 export const initialState = {
-    authToken: null
+    tokenData: {},
+    error: {}
 };
 
 export default initialState

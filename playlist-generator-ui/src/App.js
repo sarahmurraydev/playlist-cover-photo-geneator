@@ -1,5 +1,6 @@
 import camera from './camera.png';
 import './App.css';
+import Auth from './LandingScreen/Auth'
 
 function App() {
   return (
@@ -9,14 +10,7 @@ function App() {
         <p>
           Create new mosiac cover photos for your spotify playlists
         </p>
-        <a
-          className="App-link"
-          href="http://localhost:5000/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Authorize Your Spotify to Get Started
-        </a>
+        <Auth/>
       </header>
       <footer>
         <div>Icons made by 
