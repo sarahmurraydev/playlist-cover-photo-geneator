@@ -2,6 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, request, session
+from flask_cors import CORS
 from image import make_image, get_spotify_images
 from auth import get_auth_url, get_token
 from spotify import get_me, get_playlist_items, get_album_cover_photos, put_playlist_photo, get_public_playlists
@@ -15,7 +16,7 @@ project_folder = os.path.expanduser(path)
 load_dotenv(os.path.join(project_folder, '.env'))
 
 app = Flask( __name__ )
-app.secret_key = os.environ["SESSION_SECRET"]
+cors = CORS(app)
 
 @app.route('/')
 def index():
@@ -37,8 +38,9 @@ def callback():
 
 @app.route('/me')
 def get_user_data():
-    data = get_me(TOKEN_DATA[1])
-    return "HERE's my data: {}".format(data)
+    auth_header = request.headers.get('Authorization')
+    data = get_me(auth_header)
+    return data
 
 @app.route('/playlists/')
 def get_user_public_playlists():

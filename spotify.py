@@ -8,8 +8,12 @@ GET_PLAYLIST_ITEMS = "https://api.spotify.com/v1/playlists/{}/tracks"
 
 PUT_PLAYLIST_IMAGE = "https://api.spotify.com/v1/playlists/{}/images"
 
-def get_me(headers):
-    user_data = requests.get(GET_ME, headers=headers)
+def make_auth_header(string): 
+    return { "Authorization": "{}".format(string) }
+
+def get_me(auth):
+    auth_header = make_auth_header(auth)
+    user_data = requests.get(GET_ME, headers=auth_header)
     return json.loads(user_data.text)
 
 def get_public_playlists(limit, offset, headers): 
