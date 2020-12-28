@@ -30,12 +30,14 @@ class Main extends React.Component {
 
     render(){
         const {
-            loading
+            loading, 
+            error
         } = this.props
 
         return <div>
             Congrats! you've authenticated!
             {loading ? <p>Standby while we fetch your spotify data ...</p> : ""}
+            {error.message ? <p>There's been an error: {error.message}</p> : ""}
         </div>
     }
 
@@ -44,7 +46,8 @@ class Main extends React.Component {
 const mapStateToProps = state => {
     return {
         tokenData: state.tokenData, 
-        loading: state.loading
+        loading: state.loading,
+        error: state.error
     }
 }
 

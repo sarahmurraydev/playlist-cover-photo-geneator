@@ -17,31 +17,34 @@ export const toggleLoader = () => {
     }
 }
 
+export const setAPIError = (error) => {
+    return {
+        type: actionTypes.SET_API_ERROR,
+        error
+    }
+}
+
 export function getUserData() {
     return (dispatch, getState) => {
         console.log("getting user data .....")
         let token = getState().tokenData
         let config = {
-            headers: token['Authorization']
+            headers: {
+                Authorization: `Bearer ${token['token']}`
+            }
         } 
-
-        return {
-            type: actionTypes.GET_USER_DATA, 
-            data: {}
-        }
-        // axios.get(`${API_URL}/me`, config)
-        // .then(response => {
-        //     return {
-        //         type: actionTypes.GET_TOKEN,
-        //         tokenData: response
-        //     }
-        // })
-        // .catch(err => {
-        //     return {
-        //         type: actionTypes.GET_TOKEN_ERROR,
-        //         error: err
-        //     }
-        // })
+        axios.get(`${API_URL}/me`, config)
+        .then(response => {
+            console.log("got a response from the API!", response)
+            return {
+                type: actionTypes.GET_USER_DATA, 
+                data: response
+            }
+        })
+        .catch(err => {
+            console.log("got an error from the API :(")
+            dispatch(setAPIError(err))
+        })
     }
 
 }
