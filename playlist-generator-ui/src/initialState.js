@@ -1,6 +1,8 @@
 export const initialState = {
     tokenData: {},
-    error: {}
+    error: {},
+    userData: {},
+    loading: false
 };
 
 export default initialState

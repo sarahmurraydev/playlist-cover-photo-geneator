@@ -1,3 +1,8 @@
+// API ACTIONS
 export const GET_TOKEN = 'GET_TOKEN';
 export const GET_TOKEN_ERROR = 'GET_TOKEN_ERROR';
+export const GET_USER_DATA = 'GET_USER_DATA';
 export const GET_USER_PLAYLISTS = 'GET_USER_PLAYLISTS';
+
+// UI STATES: 
+export const TOGGLE_LOADER = 'TOGGLE_LOADER';
