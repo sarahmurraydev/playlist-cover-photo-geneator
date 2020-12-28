@@ -27,12 +27,13 @@ def index():
 
 @app.route('/callback')
 def callback():
-    # session.clear()
     # use the auth code returned from app_auth_url to get a token
-    authorized = get_token(request.args.get('code'))
+    response = get_token(request.args.get('code'))
     # user is authorized if token attribute exists, and is not empty 
-    print(authorized)
-    return redirect(ui_url)
+    if response['authorized']:
+        return redirect("{}/authorized/{}".format(ui_url, response['token_data']))
+    else: 
+        return redirect("{}/auth-error".format(ui_url, response['error']))
 
 @app.route('/me')
 def get_user_data():

@@ -35,10 +35,15 @@ def get_token(code):
     response = requests.post(SPOTIFY_URL_TOKEN, params=body, headers=headers)
     if response.status_code == 200:
         token = handleToken(json.loads(response.text))
-        session['token_data'] = token
-        return True
+        return {
+            'authorized': True,
+            'token_data': token
+        }
     else: 
-        return False
+        return {
+            'authorized': False,
+            'error': 'There was an error getting the token'
+        }
     
 def handleToken(response):
     REFRESH_TOKEN = response["refresh_token"]
