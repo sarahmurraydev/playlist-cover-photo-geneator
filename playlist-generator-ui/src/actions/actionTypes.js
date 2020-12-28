@@ -2,7 +2,7 @@
 export const GET_TOKEN = 'GET_TOKEN';
 export const GET_TOKEN_ERROR = 'GET_TOKEN_ERROR';
 export const SET_API_ERROR = 'SET_API_ERROR';
-export const GET_USER_DATA = 'GET_USER_DATA';
+export const SET_USER_DATA = 'SET_USER_DATA';
 export const GET_USER_PLAYLISTS = 'GET_USER_PLAYLISTS';
 
 // UI STATES: 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getToken, toggleLoader, getUserData } from '../actions/actionCreators'
+import User from '../SpotifyDataComponents/User'
 
 class Main extends React.Component {
 
@@ -31,13 +32,15 @@ class Main extends React.Component {
     render(){
         const {
             loading, 
-            error
+            error,
+            userData
         } = this.props
 
         return <div>
-            Congrats! you've authenticated!
+            Congrats! You've authenticated!
             {loading ? <p>Standby while we fetch your spotify data ...</p> : ""}
             {error.message ? <p>There's been an error: {error.message}</p> : ""}
+            {userData && userData.display_name ? <User /> : ""}
         </div>
     }
 
@@ -46,6 +49,7 @@ class Main extends React.Component {
 const mapStateToProps = state => {
     return {
         tokenData: state.tokenData, 
+        userData: state.userData,
         loading: state.loading,
         error: state.error
     }

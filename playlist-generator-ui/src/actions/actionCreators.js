@@ -24,6 +24,13 @@ export const setAPIError = (error) => {
     }
 }
 
+export const setAPIData = (type, data) => {
+    return {
+        type, 
+        data
+    }
+}
+
 export function getUserData() {
     return (dispatch, getState) => {
         console.log("getting user data .....")
@@ -36,10 +43,7 @@ export function getUserData() {
         axios.get(`${API_URL}/me`, config)
         .then(response => {
             console.log("got a response from the API!", response)
-            return {
-                type: actionTypes.GET_USER_DATA, 
-                data: response
-            }
+            dispatch(setAPIData(actionTypes.SET_USER_DATA, response.data))
         })
         .catch(err => {
             console.log("got an error from the API :(")

@@ -41,6 +41,7 @@ const setAPIError = (state, error) => {
 
 
 const rootReducer = (state = initialState, action) => {
+    console.log("in reducer we are executing the following action:", action.type)
     switch(action.type) {
         case types.GET_TOKEN:
             return setSpotifyToken(state, action.tokenData)
@@ -48,7 +49,7 @@ const rootReducer = (state = initialState, action) => {
             return toggleLoader(state)
         case types.SET_API_ERROR:
             return setAPIError(state, action.error)
-        case types.GET_USER_DATA:
+        case types.SET_USER_DATA:
             return setUserData(state, action.data)
         default: 
             return state
