@@ -1,2 +1,3 @@
-export const GET_SPOTIFY_TOKEN = 'GET_SPOTIFY_TOKEN';
+export const GET_TOKEN = 'GET_TOKEN';
+export const GET_TOKEN_ERROR = 'GET_TOKEN_ERROR';
 export const GET_USER_PLAYLISTS = 'GET_USER_PLAYLISTS';

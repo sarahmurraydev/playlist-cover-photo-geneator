@@ -5,14 +5,14 @@ const getSpotifyToken = (state, token) => {
     return {
         ...state,
         ...{
-            authToken: token
+            tokenData: token
         }
     }
 }
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
-        case types.GET_SPOTIFY_TOKEN:
+        case types.GET_TOKEN:
             return getSpotifyToken(state, action.token)
         default: 
             return state

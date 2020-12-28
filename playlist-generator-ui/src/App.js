@@ -1,8 +1,26 @@
+import { 
+  BrowserRouter as Router,  
+  Switch, 
+  Route, 
+  Link
+} from 'react-router-dom'
 import camera from './camera.png';
 import './App.css';
 import Auth from './LandingScreen/Auth'
+import Main from './LandingScreen/Main'
 
 function App() {
+  return (
+    <Router>
+     <Switch>
+       <Route path={`/authorized/:token`} component={Main}/>
+       <Route path="/" component={Home}/>
+      </Switch>
+    </Router>
+  )
+}
+
+function Home(){
   return (
     <div className="App">
       <header className="App-header">
