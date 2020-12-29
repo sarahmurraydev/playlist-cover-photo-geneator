@@ -1,5 +1,7 @@
-.App {
+body {
   text-align: center;
+  background-color: #242424;
+  color: #fff;
 }
 
 .App-logo {
@@ -22,11 +24,32 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Playlist CSS */
+.playlist-grid {
+  margin: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.playlist {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 260px;
+  border: 10px solid grey;
+  background: grey;
+  height: 350px;
+}
+
+.playlist-img {
+  width: 250px;
+  height: 250px;
+  border: 5px solid white;
+}
+
+.playlist-name {
+  font-weight: 800;
 }

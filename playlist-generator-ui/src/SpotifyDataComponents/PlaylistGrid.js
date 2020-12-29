@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getUserPlaylists } from '../actions/actionCreators'
+import Playlist from './Playlist'
 
-class Playlist extends React.Component {
+class PlaylistGrid extends React.Component {
     render(){
         const {
             userPlaylistData,
@@ -10,8 +11,12 @@ class Playlist extends React.Component {
         } = this.props
 
         if (userPlaylistData.items && userPlaylistData.items.length > 0) {
-            return <div>
-                <p> We've got your playlists. Let's show you a nice grid of them:</p>
+            const playlists = userPlaylistData.items
+            console.log("playlist items:", playlists)
+            return <div className="playlist-grid">
+                {playlists.map((playlist, index) => {
+                   return <Playlist key={index} playlist={playlist}/>
+                })}
                 </div>
         } else {
             return <button onClick={getMyPlaylists}> 
@@ -33,4 +38,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Playlist)
+export default connect(mapStateToProps, mapDispatchToProps)(PlaylistGrid)
