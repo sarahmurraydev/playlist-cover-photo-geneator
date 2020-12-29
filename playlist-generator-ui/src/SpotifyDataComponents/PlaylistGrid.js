@@ -7,6 +7,7 @@ import MorePlaylistsButton from './MorePlaylistsButton'
 class PlaylistGrid extends React.Component {
     render(){
         const {
+            userID,
             userPlaylistData,
             playlists,
             getMyPlaylists
@@ -16,7 +17,10 @@ class PlaylistGrid extends React.Component {
 
             return <div className="playlist-grid">
                 {playlists.map((playlist, index) => {
-                   return <Playlist key={index} playlist={playlist}/>
+                    // only show the playlist if the user owns it and the playlist has items on it
+                    if(playlist.owner.id === userID && playlist.tracks.total > 0) {
+                        return <Playlist key={index} playlist={playlist} index={index}/>
+                    } 
                 })}
                 <MorePlaylistsButton />
                 </div>
@@ -30,6 +34,7 @@ class PlaylistGrid extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        userID: state.userData.id ? state.userData.id : 0,
         userPlaylistData: state.userPlaylistData,
         playlists: state.playlists
     }

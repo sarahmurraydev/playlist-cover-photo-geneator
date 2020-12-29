@@ -5,7 +5,7 @@ class Playlist extends React.Component {
 
     render(){
         let smallImg = this.props.playlist.images[0]['url'];
-        console.log(this.props)
+        console.log(`${this.props.index} ${this.props.playlist.name} playlist has image url defined:`, smallImg)
 
         return <div className="playlist">
             <img src={smallImg} alt="playlist profile photo returned from spotify" className="playlist-img"/>
