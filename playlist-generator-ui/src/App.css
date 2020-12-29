@@ -29,8 +29,15 @@ body {
 .user {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   flex-wrap: wrap;
+  max-width: 700px;
+  margin: auto;
+}
+
+.user-stats {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
 }
 
 .user-profile-picture {
@@ -39,6 +46,10 @@ body {
   height: 200px;
   border-radius: 50%;
   margin: 20px;
+}
+
+.blurb {
+  width: 100%;
 }
 
 /* Playlist CSS */
