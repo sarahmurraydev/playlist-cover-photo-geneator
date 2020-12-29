@@ -12,7 +12,7 @@ class ProfileImage extends React.Component {
             let imageSrc = userImages[0]["url"]
             if (imageSrc) {
                 return <div id="profile-image">
-                    <img src={imageSrc} alt="Profile Picture from User's Spotify Account"/>
+                    <img src={imageSrc} alt="Profile Picture from User's Spotify Account" className="user-profile-picture"/>
                 </div>
             } else {
                 DefaultProfilePicture()

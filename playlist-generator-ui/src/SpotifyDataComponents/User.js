@@ -6,13 +6,19 @@ import ProfileImage from './ProfileImage'
 class User extends React.Component {
     render(){
         const {
-            userData
+            userData,
+            numPlaylists
         } = this.props
 
-        return <div>
-            <h1>WELCOME: {userData.display_name}</h1>
-            <ProfileImage />
-            <p>Here we will show you your playlists to let you make a mosaic of one of them</p>
+        return <div className="spotify-data">
+            <div className="user">
+                <ProfileImage />
+                <div className="user-stats">
+                    <h1>{userData.display_name}</h1>
+                    <h3>Followers: {userData.followers.total}</h3>
+                    <h3>Playlists: {numPlaylists}</h3>
+                </div>
+            </div>
             <PlaylistGrid />
         </div>
     }
@@ -20,7 +26,8 @@ class User extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        userData: state.userData
+        userData: state.userData, 
+        numPlaylists: state.userPlaylistData.total
     }
 }
 

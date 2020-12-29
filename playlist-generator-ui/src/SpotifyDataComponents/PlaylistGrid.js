@@ -15,13 +15,15 @@ class PlaylistGrid extends React.Component {
 
         if (userPlaylistData.items && playlists.length > 0) {
 
-            return <div className="playlist-grid">
-                {playlists.map((playlist, index) => {
-                    // only show the playlist if the user owns it and the playlist has items on it
-                    if(playlist.owner.id === userID && playlist.tracks.total > 0) {
-                        return <Playlist key={index} playlist={playlist} index={index}/>
-                    } 
-                })}
+            return <div className="grid-wrapper">
+                <div className="playlist-grid">
+                    {playlists.map((playlist, index) => {
+                        // only show the playlist if the user owns it and the playlist has items on it
+                        if(playlist.owner.id === userID && playlist.tracks.total > 0) {
+                            return <Playlist key={index} playlist={playlist} index={index}/>
+                        } 
+                    })}
+                </div>
                 <MorePlaylistsButton />
                 </div>
         } else {

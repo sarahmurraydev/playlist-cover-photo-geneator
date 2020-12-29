@@ -24,9 +24,33 @@ body {
   color: #61dafb;
 }
 
+/* User Info Boxes */
+
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.user-profile-picture {
+  border: 5px solid white;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 20px;
+}
+
 /* Playlist CSS */
+.grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 .playlist-grid {
-  margin: 100px;
+  margin: 50px 100px 25px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -57,6 +81,7 @@ body {
 .playlist-grid-footer-buttons {
   display: flex;
   flex-direction: row;
+  margin-bottom: 50px;
 }
 
 /* Tool tip CSS */
