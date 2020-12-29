@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getUserPlaylists } from '../actions/actionCreators'
 import Playlist from './Playlist'
+import MorePlaylistsButton from './MorePlaylistsButton'
 
 class PlaylistGrid extends React.Component {
     render(){
@@ -17,6 +18,7 @@ class PlaylistGrid extends React.Component {
                 {playlists.map((playlist, index) => {
                    return <Playlist key={index} playlist={playlist}/>
                 })}
+                <MorePlaylistsButton />
                 </div>
         } else {
             return <button onClick={getMyPlaylists}> 
