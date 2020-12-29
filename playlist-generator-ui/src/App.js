@@ -5,6 +5,7 @@ import {
   Link
 } from 'react-router-dom'
 import camera from './camera.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Auth from './LandingScreen/Auth'
 import Main from './LandingScreen/Main'

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getToken, toggleLoader, getUserData } from '../actions/actionCreators'
 import User from '../SpotifyDataComponents/User'
+import AreYouSureModal from '../InfoComponents/AreYouSureModal'
 
 class Main extends React.Component {
 
@@ -37,6 +38,7 @@ class Main extends React.Component {
         } = this.props
 
         return <div>
+            <AreYouSureModal />
             Congrats! You've authenticated!
             {loading ? <p>Standby while we fetch your spotify data ...</p> : ""}
             {error.message ? <p>There's been an error: {error.message}</p> : ""}

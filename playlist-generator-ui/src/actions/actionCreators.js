@@ -18,6 +18,12 @@ export const toggleLoader = () => {
     }
 }
 
+export const toggleModal = () => {
+    return {
+        type: actionTypes.TOGGLE_MODAL
+    }
+}
+
 export const setAPIError = (error) => {
     return {
         type: actionTypes.SET_API_ERROR,
@@ -66,5 +72,20 @@ export function getUserPlaylists(offset=0) {
             console.log("got an error from the API in get playlists")
             dispatch(setAPIError(err))
         })
+    }
+}
+
+export function makeAndSetPhoto(id=null) {
+    return (dispatch, getState) => {
+        console.log("setting the image of playlist", id)
+        // let token = getState().tokenData
+        // let config = makeAuthHeader(token)
+        // axios.get(`${API_URL}/playlists?limit=20&offset=${offset}`, config)
+        // .then(response => {
+        //     dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO, response.data))
+        // })
+        // .catch(err => {
+        //     dispatch(setAPIError(err))
+        // })
     }
 }

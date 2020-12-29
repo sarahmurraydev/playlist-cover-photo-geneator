@@ -5,7 +5,8 @@ export const initialState = {
     userPlaylistData: {},
     playlists: [],
     playlistOffset: 0,
-    loading: false
+    loading: false,
+    showModal: false
 };
 
 export default initialState

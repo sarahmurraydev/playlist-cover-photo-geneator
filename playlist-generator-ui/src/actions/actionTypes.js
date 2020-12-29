@@ -4,6 +4,8 @@ export const GET_TOKEN_ERROR = 'GET_TOKEN_ERROR';
 export const SET_API_ERROR = 'SET_API_ERROR';
 export const SET_USER_DATA = 'SET_USER_DATA';
 export const SET_PLAYLIST_DATA = 'SET_PLAYLIST_DATA';
+export const MAKE_AND_SET_PHOTO = 'MAKE_AND_SET_PHOTO'
 
 // UI STATES: 
 export const TOGGLE_LOADER = 'TOGGLE_LOADER';
+export const TOGGLE_MODAL = "TOGGLE_MODAL";

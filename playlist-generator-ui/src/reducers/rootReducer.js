@@ -20,6 +20,15 @@ const toggleLoader = (state) => {
     }
 }
 
+const toggleModal = (state) => {
+    return {
+        ...state,
+        ...{
+            showModal: !state.showModal
+        }
+    }
+}
+
 const setUserData = (state, data) => {
     return {
         ...state, 
@@ -60,6 +69,8 @@ const rootReducer = (state = initialState, action) => {
             return setSpotifyToken(state, action.tokenData)
         case types.TOGGLE_LOADER:
             return toggleLoader(state)
+        case types.TOGGLE_MODAL: 
+            return toggleModal(state)
         case types.SET_API_ERROR:
             return setAPIError(state, action.error)
         case types.SET_USER_DATA:
