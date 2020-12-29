@@ -8,12 +8,12 @@ class PlaylistGrid extends React.Component {
     render(){
         const {
             userPlaylistData,
+            playlists,
             getMyPlaylists
         } = this.props
 
-        if (userPlaylistData.items && userPlaylistData.items.length > 0) {
-            const playlists = userPlaylistData.items
-            console.log("playlist items:", playlists)
+        if (userPlaylistData.items && playlists.length > 0) {
+
             return <div className="playlist-grid">
                 {playlists.map((playlist, index) => {
                    return <Playlist key={index} playlist={playlist}/>
@@ -30,7 +30,8 @@ class PlaylistGrid extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        userPlaylistData: state.userPlaylistData
+        userPlaylistData: state.userPlaylistData,
+        playlists: state.playlists
     }
 }
 

@@ -33,7 +33,11 @@ const setPlaylistData = (state, data) => {
     return {
         ...state, 
         ...{
-            userPlaylistData: data
+            userPlaylistData: data,
+            // combine these playlists with the current array
+            playlists: state.playlists.concat(data.items),
+            // increment the offset each time the API call is made
+            playlistOffset: state.playlistOffset + 20
         }
     }
 }

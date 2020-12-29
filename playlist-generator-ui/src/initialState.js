@@ -3,6 +3,8 @@ export const initialState = {
     error: {},
     userData: {},
     userPlaylistData: {},
+    playlists: [],
+    playlistOffset: 0,
     loading: false
 };
 
