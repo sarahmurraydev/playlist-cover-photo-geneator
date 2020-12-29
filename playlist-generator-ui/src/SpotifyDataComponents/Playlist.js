@@ -1,4 +1,5 @@
 import React from 'react'
+import AppsIcon from '@material-ui/icons/Apps';
 import '../App.css';
 
 class Playlist extends React.Component {
@@ -7,9 +8,12 @@ class Playlist extends React.Component {
         let smallImg = this.props.playlist.images[0]['url'];
         console.log(`${this.props.index} ${this.props.playlist.name} playlist has image url defined:`, smallImg)
 
-        return <div className="playlist">
+        return <div className="playlist-card">
             <img src={smallImg} alt="playlist profile photo returned from spotify" className="playlist-img"/>
-            <p className="playlist-name">{this.props.playlist.name}</p>
+            <div className="playlist-details">
+                <p className="playlist-name">{this.props.playlist.name}</p>
+                <AppsIcon />
+            </div>
         </div>
     }
 }

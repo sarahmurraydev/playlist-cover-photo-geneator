@@ -69,20 +69,33 @@ body {
   flex-wrap: wrap;
 }
 
-.playlist {
+.playlist-card {
   margin: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 260px;
-  border: 10px solid grey;
-  background: grey;
+  padding: 20px;
+  border: 2px solid black;
+  /* border-radius: 20px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: lightblue;;
   height: 350px;
 }
 
 .playlist-img {
   width: 250px;
   height: 250px;
-  border: 5px solid white;
+  /* border-radius: 20px; */
+  border: 5px solid black;
+}
+
+.playlist-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .playlist-name {
@@ -93,6 +106,30 @@ body {
   display: flex;
   flex-direction: row;
   margin-bottom: 50px;
+}
+
+/* make playlists table list for phones */
+@media only screen and (max-width: 400px) {
+  .playlist-img {
+    width: 75px;
+    height: 75px;
+    /* border-radius: 20px; */
+    border: 5px solid black;
+  }
+
+  .playlist-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100px;
+    width: 200px;
+  }
+
+  .playlist-details {
+    margin-left: 20px;
+    font-size: small;
+  }
 }
 
 /* Tool tip CSS */
