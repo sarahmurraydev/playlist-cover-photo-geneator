@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '../constants'
+import { makeAuthHeader } from '../utils';
 import * as actionTypes from './actionTypes'
 
 export const getToken = (url) => {
@@ -35,11 +36,7 @@ export function getUserData() {
     return (dispatch, getState) => {
         console.log("getting user data .....")
         let token = getState().tokenData
-        let config = {
-            headers: {
-                Authorization: `Bearer ${token['token']}`
-            }
-        } 
+        let config = makeAuthHeader(token)
         axios.get(`${API_URL}/me`, config)
         .then(response => {
             console.log("got a response from the API!", response)
@@ -53,20 +50,19 @@ export function getUserData() {
 
 }
 
-
-// saving for next axios requests: 
-/* 
-axios.get(`${API_URL}/session`)
+export function getUserPlaylists() {
+    return (dispatch, getState) => {
+        console.log("getting the user playlists ...")
+        let token = getState().tokenData
+        let config = makeAuthHeader(token)
+        axios.get(`${API_URL}/playlists?limit=20&offset=0`, config)
         .then(response => {
-            return {
-                type: actionTypes.GET_TOKEN,
-                tokenData: response
-            }
+            console.log("got a response from the API from playlists!", response)
+            dispatch(setAPIData(actionTypes.SET_PLAYLIST_DATA, response.data))
         })
         .catch(err => {
-            return {
-                type: actionTypes.GET_TOKEN_ERROR,
-                error: err
-            }
+            console.log("got an error from the API in get playlists")
+            dispatch(setAPIError(err))
         })
-*/
+    }
+}

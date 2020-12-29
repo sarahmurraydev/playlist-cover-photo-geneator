@@ -29,6 +29,15 @@ const setUserData = (state, data) => {
     }
 }
 
+const setPlaylistData = (state, data) => {
+    return {
+        ...state, 
+        ...{
+            userPlaylistData: data
+        }
+    }
+}
+
 const setAPIError = (state, error) => {
     console.log("in reducer, setting api error", error)
     return {
@@ -51,6 +60,8 @@ const rootReducer = (state = initialState, action) => {
             return setAPIError(state, action.error)
         case types.SET_USER_DATA:
             return setUserData(state, action.data)
+        case types.SET_PLAYLIST_DATA: 
+            return setPlaylistData(state, action.data)
         default: 
             return state
     }

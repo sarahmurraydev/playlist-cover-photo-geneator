@@ -20,7 +20,6 @@ class ProfileImage extends React.Component {
         } else {
             DefaultProfilePicture()
         }
-        
     }
 }
 

@@ -42,22 +42,24 @@ def get_user_data():
     data = get_me(auth_header)
     return data
 
-@app.route('/playlists/')
+@app.route('/playlists')
 def get_user_public_playlists():
+    auth_header = request.headers.get('Authorization')
     limit = request.args.get('limit')
     offset = request.args.get('offset')
-    data = get_public_playlists(limit, offset, TOKEN_DATA[1])
+    data = get_public_playlists(limit, offset, auth_header)
     return data
 
 @app.route('/playlist-items/<id>')
-# id: 4a0C47OlHU0KKNxySw8NU7
 def get_item_photos(id):
-    data = get_playlist_items(id, TOKEN_DATA[1])
+    auth_header = request.headers.get('Authorization')
+    data = get_playlist_items(id, auth_header)
     return data
 
 @app.route('/playlist/track-photos/<id>')
 def get_items(id):
-    data = get_album_cover_photos(id, TOKEN_DATA[1])
+    auth_header = request.headers.get('Authorization')
+    data = get_album_cover_photos(id, auth_header)
     return data
   
 @app.route('/home')
@@ -66,9 +68,10 @@ def home():
 
 @app.route('/image/<id>')
 def image(id):
-    images = get_spotify_images(id, TOKEN_DATA[1])
+    auth_header = request.headers.get('Authorization')
+    images = get_spotify_images(id, auth_header)
     name = make_image(id, images)
-    result = put_playlist_photo(id, TOKEN_DATA[1], name)
+    result = put_playlist_photo(id, auth_header, name)
     return result
 
 if __name__ == '__main__': 

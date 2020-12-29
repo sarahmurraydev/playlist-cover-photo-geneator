@@ -16,21 +16,24 @@ def get_me(auth):
     user_data = requests.get(GET_ME, headers=auth_header)
     return json.loads(user_data.text)
 
-def get_public_playlists(limit, offset, headers): 
+def get_public_playlists(limit, offset, auth): 
+    auth_header = make_auth_header(auth)
     uri = GET_PUBLIC_PLAYLISTS.format(limit, offset)
-    playlists = requests.get(uri, headers=headers)
+    playlists = requests.get(uri, headers=auth_header)
     return json.loads(playlists.text)
 
 # get a playlist items from playlist ID 
-def get_playlist_items(playlist_id, headers):
+def get_playlist_items(playlist_id, auth):
+    auth_header = make_auth_header(auth)
     uri = GET_PLAYLIST_ITEMS.format(playlist_id)
-    playlist_items = requests.get(uri, headers=headers)
+    playlist_items = requests.get(uri, headers=auth_header)
     return json.loads(playlist_items.text)
 
 # get album covers for the items from the playlist
-def get_album_cover_photos(album_id, headers):
+def get_album_cover_photos(album_id, auth):
+    auth_header = make_auth_header(auth)
     image_urls = []
-    data = get_playlist_items(album_id, headers)
+    data = get_playlist_items(album_id, headers=auth_header)
     tracks = data["items"]
     for i in range(len(tracks)):
         # get the 300 x 300 image url
@@ -48,11 +51,12 @@ def get_album_cover_photos(album_id, headers):
     }
     return response_dict
 
-def put_playlist_photo(playlist_id, headers, image_name): 
-     uri = PUT_PLAYLIST_IMAGE.format(playlist_id)
+def put_playlist_photo(playlist_id, auth, image_name): 
+    headers = make_auth_header(auth)
+    uri = PUT_PLAYLIST_IMAGE.format(playlist_id)
      ## add content type to header:
-     headers['Content-Type'] = 'image/jpeg'
-     with open(image_name, 'rb') as image_file:
-         image_b64 = base64.b64encode(image_file.read())
-     response = requests.put(uri, data = image_b64, headers=headers)
-     return response.text
+    headers['Content-Type'] = 'image/jpeg'
+    with open(image_name, 'rb') as image_file:
+        image_b64 = base64.b64encode(image_file.read())
+    response = requests.put(uri, data = image_b64, headers=headers)
+    return response.text
