@@ -95,6 +95,7 @@ export function getUpdatedPlaylistData(id) {
 
 export function makeAndSetPhoto(id) {
     return (dispatch, getState) => {
+        // dispatch loader (modal you can't dismiss)
         console.log("getting the playlist ID:", id)
         let token = getState().tokenData
         let config = makeAuthHeader(token)

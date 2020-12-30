@@ -4,6 +4,7 @@ import { getToken, toggleLoader, getUserData } from '../actions/actionCreators'
 import { isEmpty } from '../utils'
 import User from '../SpotifyDataComponents/User'
 import AreYouSureModal from '../InfoComponents/AreYouSureModal'
+import LoadingModal from '../InfoComponents/LoadingModal'
 
 class Main extends React.Component {
 
@@ -37,6 +38,7 @@ class Main extends React.Component {
 
         return <div>
             <AreYouSureModal />
+            <LoadingModal />
             {loading ? 
                 ( <div>
                     <p>Standby while we fetch your spotify data ...</p>
