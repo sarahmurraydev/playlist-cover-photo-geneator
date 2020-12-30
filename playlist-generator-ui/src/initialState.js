@@ -4,6 +4,8 @@ export const initialState = {
     userData: {},
     userPlaylistData: {},
     playlists: [],
+    selectedPlaylistID: "",
+    putPhotoResponseData: {},
     playlistOffset: 0,
     loading: false,
     showModal: false

@@ -20,11 +20,21 @@ const toggleLoader = (state) => {
     }
 }
 
-const toggleModal = (state) => {
+const openModal = (state, id) => {
     return {
         ...state,
         ...{
-            showModal: !state.showModal
+            showModal: true,
+            selectedPlaylistID: id
+        }
+    }
+}
+
+const closeModal = (state) => {
+    return {
+        ...state,
+        ...{
+            showModal: false
         }
     }
 }
@@ -51,6 +61,15 @@ const setPlaylistData = (state, data) => {
     }
 }
 
+const setPutPhotoResponse = (state, data) => {
+    return {
+        ...state, 
+        ...{
+            putPhotoResponseData: data
+        }
+    }
+}
+
 const setAPIError = (state, error) => {
     console.log("in reducer, setting api error", error)
     return {
@@ -69,14 +88,18 @@ const rootReducer = (state = initialState, action) => {
             return setSpotifyToken(state, action.tokenData)
         case types.TOGGLE_LOADER:
             return toggleLoader(state)
-        case types.TOGGLE_MODAL: 
-            return toggleModal(state)
+        case types.OPEN_MODAL: 
+            return openModal(state, action.selectedPlaylistID)
+        case types.CLOSE_MODAL: 
+            return closeModal(state)
         case types.SET_API_ERROR:
             return setAPIError(state, action.error)
         case types.SET_USER_DATA:
             return setUserData(state, action.data)
         case types.SET_PLAYLIST_DATA: 
             return setPlaylistData(state, action.data)
+        case types.MAKE_AND_SET_PHOTO_RESPONSE:
+            return setPutPhotoResponse(state, action.data)
         default: 
             return state
     }

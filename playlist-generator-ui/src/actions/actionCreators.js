@@ -18,9 +18,17 @@ export const toggleLoader = () => {
     }
 }
 
-export const toggleModal = () => {
+export const openModal = (id) => {
+    console.log("openning the modal via playlist", id)
     return {
-        type: actionTypes.TOGGLE_MODAL
+        type: actionTypes.OPEN_MODAL,
+        selectedPlaylistID: id
+    }
+}
+
+export const closeModal = () => {
+    return {
+        type: actionTypes.CLOSE_MODAL
     }
 }
 
@@ -75,17 +83,18 @@ export function getUserPlaylists(offset=0) {
     }
 }
 
-export function makeAndSetPhoto(id=null) {
+export function makeAndSetPhoto() {
     return (dispatch, getState) => {
-        console.log("setting the image of playlist", id)
-        // let token = getState().tokenData
-        // let config = makeAuthHeader(token)
-        // axios.get(`${API_URL}/playlists?limit=20&offset=${offset}`, config)
-        // .then(response => {
-        //     dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO, response.data))
-        // })
-        // .catch(err => {
-        //     dispatch(setAPIError(err))
-        // })
+        let playlistID = getState().selectedPlaylistID
+        console.log("setting the image of playlist", playlistID)
+        let token = getState().tokenData
+        let config = makeAuthHeader(token)
+        axios.get(`${API_URL}/image/${playlistID}`, config)
+        .then(response => {
+            dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO_RESPONSE, response.data))
+        })
+        .catch(err => {
+            dispatch(setAPIError(err))
+        })
     }
 }

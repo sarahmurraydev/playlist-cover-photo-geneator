@@ -59,7 +59,6 @@ body {
   align-items: center;
 }
 
-
 .playlist-grid {
   margin: 50px 100px 25px;
   display: flex;
@@ -177,4 +176,8 @@ body {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+.playlist-modal {
+  color: #282c34;
 }

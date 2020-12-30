@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { makeAndSetPhoto, toggleModal } from '../actions/actionCreators';
+import { makeAndSetPhoto, closeModal } from '../actions/actionCreators';
 
 class AreYouSureModal extends React.Component {
     render(){
@@ -12,7 +12,7 @@ class AreYouSureModal extends React.Component {
             handleCloseAndMakePhoto
         } = this.props
 
-        return <Modal show={showModal} onHide={handleCloseModal}>
+        return <Modal show={showModal} onHide={handleCloseModal} className="playlist-modal">
             <Modal.Header closeButton>
                 <Modal.Title>Are You Sure?</Modal.Title>
             </Modal.Header>
@@ -41,9 +41,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleCloseModal: () => dispatch(toggleModal()),
+        handleCloseModal: () => dispatch(closeModal()),
         handleCloseAndMakePhoto: () => {
-            dispatch(toggleModal())
+            dispatch(closeModal())
             dispatch(makeAndSetPhoto())
         }
     }
