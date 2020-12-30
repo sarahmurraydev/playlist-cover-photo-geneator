@@ -2,6 +2,8 @@ import base64, requests, json, os, sys
 
 GET_ME = "https://api.spotify.com/v1/me"
 
+GET_PLAYLIST = "https://api.spotify.com/v1/playlists/{}"
+
 GET_PUBLIC_PLAYLISTS = "https://api.spotify.com/v1/me/playlists?limit={}&offset={}"
 
 GET_PLAYLIST_ITEMS = "https://api.spotify.com/v1/playlists/{}/tracks"
@@ -16,6 +18,11 @@ def get_me(auth):
     user_data = requests.get(GET_ME, headers=auth_header)
     # TODO: handle error
     return json.loads(user_data.text)
+
+def get_playlist(id, auth): 
+    auth_header = make_auth_header(auth)
+    playlist_data = requests.get(GET_PLAYLIST.format(id), headers=auth_header)
+    return json.loads(playlist_data.text)
 
 def get_public_playlists(limit, offset, auth): 
     auth_header = make_auth_header(auth)
@@ -62,7 +69,7 @@ def put_playlist_photo(playlist_id, auth, image_as_bytes):
     headers['Content-Type'] = 'image/jpeg'
     image_b64 = base64.b64encode(image_as_bytes)
     response = requests.put(uri, data = image_b64, headers=headers)
-    response_dict = { 'response_code': 202 }
+    response_dict = { 'response_code': response.status_code }
     if response.status_code == 202:
         message = "Successfully posted a photo to ".format(playlist_id)
         response_dict['message'] = message

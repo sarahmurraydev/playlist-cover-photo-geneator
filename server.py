@@ -4,7 +4,7 @@ from flask import Flask, jsonify, redirect, request, session
 from flask_cors import CORS
 from image import make_image, get_spotify_images
 from auth import get_auth_url, get_token
-from spotify import get_me, get_playlist_items, get_album_cover_photos, put_playlist_photo, get_public_playlists
+from spotify import get_me, get_playlist_items, get_album_cover_photos, put_playlist_photo, get_public_playlists, get_playlist
 
 # constants: 
 api_base_url: "https://localhost:5000/"
@@ -39,6 +39,12 @@ def callback():
 def get_user_data():
     auth_header = request.headers.get('Authorization')
     data = get_me(auth_header)
+    return data
+
+@app.route('/playlist/<id>')
+def get_playlists_of_id(id):
+    auth_header = request.headers.get('Authorization')
+    data = get_playlist(id, auth_header)
     return data
 
 @app.route('/playlists')
