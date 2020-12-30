@@ -72,15 +72,15 @@ body {
   margin: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  max-width: 260px;
-  padding: 20px;
+  max-width: 280px;
+  padding: 15px;
   border: 2px solid black;
   /* border-radius: 20px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: lightblue;;
-  height: 350px;
+  height: 375px;
 }
 
 .playlist-img {
@@ -90,11 +90,18 @@ body {
   border: 5px solid black;
 }
 
+.name-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  height: 64px;
+}
+
 .playlist-details {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .playlist-name {

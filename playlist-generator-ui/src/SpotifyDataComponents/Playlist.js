@@ -13,12 +13,15 @@ class Playlist extends React.Component {
 
         let smallImg = this.props.playlist.images[0]['url'];
         // console.log(`${this.props.index} ${this.props.playlist.name} playlist has image url defined:`, smallImg)
-        console.log(this.props.playlist.id)
+        let playlistTitleClass = this.props.playlist.name.split("");
+        console.log(`${this.props.playlist.name} playlist title length:`, playlistTitleClass.length)
 
         return <div className="playlist-card">
             <img src={smallImg} alt="playlist profile photo returned from spotify" className="playlist-img"/>
             <div className="playlist-details">
-                <p className="playlist-name">{this.props.playlist.name}</p>
+                <div className="name-wrapper">
+                    <p className="playlist-name">{this.props.playlist.name}</p>
+                </div>
                 <AppsIcon onClick={() => showModal(this.props.playlist.id)}/>
             </div>
         </div>
