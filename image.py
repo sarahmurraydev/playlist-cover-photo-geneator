@@ -14,7 +14,6 @@ def get_images(n):
     base_path = "./test-images/image{}.jpeg"
     for i in range(n):
         current_image_path = base_path.format((i+1))
-        print("Getting the image at" + current_image_path)
         image = Image.open(current_image_path)
         images.append(image)
 
@@ -75,8 +74,5 @@ def make_image(id, images):
 
             new_image.paste(image_adding, (x_dim, y_dim))
             image_index+=1 # increament image index for next photo
-    
-    size = str(sys.getsizeof(new_image))+ " bytes"
-    print("new image size: {}".format(size))
 
     return convertToJpeg(new_image)
