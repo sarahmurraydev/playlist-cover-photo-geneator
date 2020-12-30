@@ -7,7 +7,7 @@ import { makeAndSetPhoto, closeModal } from '../actions/actionCreators';
 class AreYouSureModal extends React.Component {
     render(){
         const {
-            showModal,
+            showPlaylistModal,
             selectedPlaylist,
             handleCloseModal,
             handleCloseAndMakePhoto
@@ -15,7 +15,7 @@ class AreYouSureModal extends React.Component {
 
         console.log("selected playlist:", selectedPlaylist)
 
-        return <Modal show={showModal} onHide={handleCloseModal} className="playlist-modal">
+        return <Modal show={showPlaylistModal} onHide={handleCloseModal} className="playlist-modal">
             <Modal.Header closeButton>
                 <Modal.Title>Are You Sure?</Modal.Title>
             </Modal.Header>
@@ -43,7 +43,7 @@ class AreYouSureModal extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        showModal: state.showModal,
+        showPlaylistModal: state.showPlaylistModal,
         selectedPlaylist: state.selectedPlaylist
     }
 }

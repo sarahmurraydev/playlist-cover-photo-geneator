@@ -23,7 +23,7 @@ const openModal = (state, selectedPlaylist) => {
     return {
         ...state,
         ...{
-            showModal: true,
+            showPlaylistModal: true,
             selectedPlaylist: selectedPlaylist
         }
     }
@@ -33,7 +33,7 @@ const closeModal = (state) => {
     return {
         ...state,
         ...{
-            showModal: false,
+            showPlaylistModal: false,
             // clear the selected playlist after successful response
             selectedPlaylist: {}
         }

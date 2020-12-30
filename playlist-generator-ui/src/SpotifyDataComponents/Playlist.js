@@ -8,7 +8,7 @@ class Playlist extends React.Component {
 
     render(){
         const {
-            showModal
+            showPlaylistModal
         } = this.props 
 
         let smallImg = this.props.playlist.images[0]['url'];
@@ -22,7 +22,7 @@ class Playlist extends React.Component {
                 <div className="name-wrapper">
                     <p className="playlist-name">{this.props.playlist.name}</p>
                 </div>
-                <AppsIcon onClick={() => showModal(this.props.playlist)} style={{ color: "#21af43" }}/>
+                <AppsIcon onClick={() => showPlaylistModal(this.props.playlist)} style={{ color: "#21af43" }}/>
             </div>
         </div>
     }
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        showModal: (playlist) => dispatch(openModal(playlist))
+        showPlaylistModal: (playlist) => dispatch(openModal(playlist))
     }
 }
 
