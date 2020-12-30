@@ -13,6 +13,8 @@ class AreYouSureModal extends React.Component {
             handleCloseAndMakePhoto
         } = this.props
 
+        console.log("selected playlist:", selectedPlaylist)
+
         return <Modal show={showModal} onHide={handleCloseModal} className="playlist-modal">
             <Modal.Header closeButton>
                 <Modal.Title>Are You Sure?</Modal.Title>
@@ -24,7 +26,11 @@ class AreYouSureModal extends React.Component {
                 You will still be able to change your playlist's profile photo via the spotify desktop app as normal.
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={handleCloseAndMakePhoto} style={{ backgroundColor: "#21af43" }}>
+                <Button 
+                    variant="primary" 
+                    onClick={() => handleCloseAndMakePhoto(selectedPlaylist.id)} 
+                    style={{ backgroundColor: "#21af43" }}
+                >
                     OK
                 </Button>
                 <Button variant="secondary" onClick={handleCloseModal}>
@@ -45,9 +51,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         handleCloseModal: () => dispatch(closeModal()),
-        handleCloseAndMakePhoto: () => {
+        handleCloseAndMakePhoto: (id) => {
+            console.log("want to set the photo of the playlist", id)
             dispatch(closeModal())
-            dispatch(makeAndSetPhoto())
+            dispatch(makeAndSetPhoto(id))
         }
     }
 }

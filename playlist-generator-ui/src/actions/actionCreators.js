@@ -77,12 +77,12 @@ export function getUserPlaylists(offset=0) {
     }
 }
 
-export function makeAndSetPhoto() {
+export function makeAndSetPhoto(id) {
     return (dispatch, getState) => {
-        let playlistID = getState().selectedPlaylistID
+        console.log("getting the playlist ID:", id)
         let token = getState().tokenData
         let config = makeAuthHeader(token)
-        axios.get(`${API_URL}/image/${playlistID}`, config)
+        axios.get(`${API_URL}/image/${id}`, config)
         .then(response => {
             dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO_RESPONSE, response.data))
         })

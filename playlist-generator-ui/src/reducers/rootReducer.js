@@ -33,7 +33,9 @@ const closeModal = (state) => {
     return {
         ...state,
         ...{
-            showModal: false
+            showModal: false,
+            // clear the selected playlist after successful response
+            selectedPlaylist: {}
         }
     }
 }
@@ -64,7 +66,7 @@ const setPutPhotoResponse = (state, data) => {
     return {
         ...state, 
         ...{
-            putPhotoResponseData: data
+            putPhotoResponseData: data,
         }
     }
 }
