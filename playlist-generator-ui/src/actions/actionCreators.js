@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../constants'
+import { API_URL, SUCCESS } from '../constants'
 import { makeAuthHeader } from '../utils';
 import * as actionTypes from './actionTypes'
 
@@ -100,7 +100,15 @@ export function makeAndSetPhoto(id) {
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/image/${id}`, config)
         .then(response => {
-            dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO_RESPONSE, response.data))
+            console.log("got a response from PUT", response.data)
+            if(response.data.status == SUCCESS) {
+                // show success modal and make the get call 
+                dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO_RESPONSE, response.data))
+                dispatch(getUpdatedPlaylistData(id))
+            } else {
+                 // show error modal
+                dispatch(setAPIError(response.data))
+            }
         })
         .catch(err => {
             dispatch(setAPIError(err))
