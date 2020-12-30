@@ -1,5 +1,4 @@
-import os
-import json
+import os, json, sys
 from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, request, session
 from flask_cors import CORS
@@ -70,8 +69,8 @@ def home():
 def image(id):
     auth_header = request.headers.get('Authorization')
     images = get_spotify_images(id, auth_header)
-    name = make_image(id, images)
-    result = put_playlist_photo(id, auth_header, name)
+    image = make_image(id, images)
+    result = put_playlist_photo(id, auth_header, image)
     return result
 
 if __name__ == '__main__': 

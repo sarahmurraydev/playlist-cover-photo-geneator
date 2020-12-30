@@ -1,8 +1,12 @@
-import math 
-import requests
+import math, requests, sys
 from PIL import Image
 from io import BytesIO
 from spotify import get_album_cover_photos
+
+def convertToJpeg(image):
+    with BytesIO() as f:
+        image.save(f, format='JPEG')
+        return f.getvalue()
 
 def get_images(n):
     # get the images (there are n of them)
@@ -16,14 +20,13 @@ def get_images(n):
 
     return images
 
-def get_spotify_images(id, headers): 
-    data = get_album_cover_photos(id, headers)
+def get_spotify_images(id, auth): 
+    data = get_album_cover_photos(id, auth)
     image_urls = data["urls"]
 
     images = []
     for i in range(len(image_urls)):
         current_image_url = image_urls[i]
-        print("Getting the image at " + current_image_url)
         response = requests.get(current_image_url)
         image = Image.open(BytesIO(response.content))
         images.append(image)
@@ -72,9 +75,8 @@ def make_image(id, images):
 
             new_image.paste(image_adding, (x_dim, y_dim))
             image_index+=1 # increament image index for next photo
+    
+    size = str(sys.getsizeof(new_image))+ " bytes"
+    print("new image size: {}".format(size))
 
-    image_name = "./cover-photos/playlist-{}.jpeg".format(id)
-    new_image.save(image_name)
-    new_image.show()
-
-    return image_name
+    return convertToJpeg(new_image)
