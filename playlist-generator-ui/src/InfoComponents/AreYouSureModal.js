@@ -25,7 +25,7 @@ class AreYouSureModal extends React.Component {
                 <Button variant="secondary" onClick={handleCloseModal}>
                     Close
           </Button>
-                <Button variant="primary" onClick={handleCloseAndMakePhoto}>
+                <Button variant="primary" onClick={handleCloseAndMakePhoto} style={{ backgroundColor: "#21af43" }}>
                     Make and Upload My Playlist's New Mosiac Cover Photo
           </Button>
             </Modal.Footer>
