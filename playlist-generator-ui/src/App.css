@@ -29,9 +29,9 @@ body {
 .user {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
-  max-width: 700px;
-  margin: 20px auto;
+  margin: 20px 20px;
 }
 
 .user-stats {
@@ -60,7 +60,7 @@ body {
 }
 
 .playlist-grid {
-  margin: 50px 100px 25px;
+  margin: 10px 100px 25px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -87,13 +87,14 @@ body {
   width: 230px;
   height: 230px;
   /* border-radius: 20px; */
-  border: 5px solid black;
+  border: 2px solid black;
 }
 
 .name-wrapper {
   display: flex;
   flex-wrap: wrap;
   height: 64px;
+  overflow: hidden
 }
 
 .playlist-details {
