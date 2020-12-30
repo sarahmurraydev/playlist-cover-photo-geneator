@@ -22,7 +22,7 @@ class Playlist extends React.Component {
                 <div className="name-wrapper">
                     <p className="playlist-name">{this.props.playlist.name}</p>
                 </div>
-                <AppsIcon onClick={() => showModal(this.props.playlist.id)} style={{ color: "#21af43" }}/>
+                <AppsIcon onClick={() => showModal(this.props.playlist)} style={{ color: "#21af43" }}/>
             </div>
         </div>
     }
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        showModal: (playlistID) => dispatch(openModal(playlistID))
+        showModal: (playlist) => dispatch(openModal(playlist))
     }
 }
 

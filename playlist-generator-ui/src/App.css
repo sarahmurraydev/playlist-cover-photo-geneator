@@ -24,6 +24,10 @@ body {
   color: #61dafb;
 }
 
+.bold-text {
+  font-weight: 800;
+}
+
 /* User Info Boxes */
 
 .user {

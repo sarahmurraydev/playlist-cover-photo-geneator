@@ -19,12 +19,12 @@ const toggleLoader = (state) => {
     }
 }
 
-const openModal = (state, id) => {
+const openModal = (state, selectedPlaylist) => {
     return {
         ...state,
         ...{
             showModal: true,
-            selectedPlaylistID: id
+            selectedPlaylist: selectedPlaylist
         }
     }
 }
@@ -87,7 +87,7 @@ const rootReducer = (state = initialState, action) => {
         case types.TOGGLE_LOADER:
             return toggleLoader(state)
         case types.OPEN_MODAL: 
-            return openModal(state, action.selectedPlaylistID)
+            return openModal(state, action.selectedPlaylist)
         case types.CLOSE_MODAL: 
             return closeModal(state)
         case types.SET_API_ERROR:

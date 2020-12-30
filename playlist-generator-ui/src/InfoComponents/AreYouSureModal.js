@@ -8,6 +8,7 @@ class AreYouSureModal extends React.Component {
     render(){
         const {
             showModal,
+            selectedPlaylist,
             handleCloseModal,
             handleCloseAndMakePhoto
         } = this.props
@@ -17,17 +18,18 @@ class AreYouSureModal extends React.Component {
                 <Modal.Title>Are You Sure?</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                Clicking "OK" below will make AND set this playlist's cover photo to be a mosiac 
-                of the current songs on this playlist. You can not undo this. You will still be 
-                able to change your playlist's profile photo via the spotify desktop app as normal.
+                Clicking "OK" below will make AND set your playlist:&nbsp;
+                <span className="bold-text">{selectedPlaylist.name}</span>&nbsp;cover photo to be a mosiac of the 
+                current songs on this playlist. You <span className="bold-text">can not</span> undo this. 
+                You will still be able to change your playlist's profile photo via the spotify desktop app as normal.
             </Modal.Body>
             <Modal.Footer>
+                <Button variant="primary" onClick={handleCloseAndMakePhoto} style={{ backgroundColor: "#21af43" }}>
+                    OK
+                </Button>
                 <Button variant="secondary" onClick={handleCloseModal}>
                     Close
-          </Button>
-                <Button variant="primary" onClick={handleCloseAndMakePhoto} style={{ backgroundColor: "#21af43" }}>
-                    Make and Upload My Playlist's New Mosiac Cover Photo
-          </Button>
+                </Button>
             </Modal.Footer>
         </Modal>
     }
@@ -35,7 +37,8 @@ class AreYouSureModal extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        showModal: state.showModal
+        showModal: state.showModal,
+        selectedPlaylist: state.selectedPlaylist
     }
 }
 

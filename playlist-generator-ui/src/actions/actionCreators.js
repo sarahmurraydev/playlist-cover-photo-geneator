@@ -18,10 +18,10 @@ export const toggleLoader = () => {
     }
 }
 
-export const openModal = (id) => {
+export const openModal = (playlist) => {
     return {
         type: actionTypes.OPEN_MODAL,
-        selectedPlaylistID: id
+        selectedPlaylist: playlist
     }
 }
 
