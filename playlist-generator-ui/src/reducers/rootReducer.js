@@ -2,7 +2,6 @@ import * as types from '../actions/actionTypes';
 import { initialState } from '../initialState';
 
 const setSpotifyToken = (state, tokenData) => {
-    console.log("updating the tokenData state", tokenData)
     return {
         ...state,
         ...{
@@ -71,7 +70,6 @@ const setPutPhotoResponse = (state, data) => {
 }
 
 const setAPIError = (state, error) => {
-    console.log("in reducer, setting api error", error)
     return {
         ...state,
         ...{

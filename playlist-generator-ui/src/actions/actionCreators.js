@@ -19,7 +19,6 @@ export const toggleLoader = () => {
 }
 
 export const openModal = (id) => {
-    console.log("openning the modal via playlist", id)
     return {
         type: actionTypes.OPEN_MODAL,
         selectedPlaylistID: id
@@ -48,16 +47,14 @@ export const setAPIData = (type, data) => {
 
 export function getUserData() {
     return (dispatch, getState) => {
-        console.log("getting user data .....")
         let token = getState().tokenData
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/me`, config)
         .then(response => {
-            console.log("got a response from the API!", response)
             dispatch(setAPIData(actionTypes.SET_USER_DATA, response.data))
+            dispatch(toggleLoader())
         })
         .catch(err => {
-            console.log("got an error from the API :(")
             dispatch(setAPIError(err))
         })
     }
@@ -68,16 +65,13 @@ export function getUserPlaylists(offset=0) {
     // when we already have the user's first 20 playlists, 
     // we use the `next` url of the playlist object to get the offset (in MorePlaylistButton.js)
     return (dispatch, getState) => {
-        console.log("getting the user playlists ...")
         let token = getState().tokenData
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/playlists?limit=20&offset=${offset}`, config)
         .then(response => {
-            console.log("got a response from the API from playlists!", response)
             dispatch(setAPIData(actionTypes.SET_PLAYLIST_DATA, response.data))
         })
         .catch(err => {
-            console.log("got an error from the API in get playlists")
             dispatch(setAPIError(err))
         })
     }
@@ -86,7 +80,6 @@ export function getUserPlaylists(offset=0) {
 export function makeAndSetPhoto() {
     return (dispatch, getState) => {
         let playlistID = getState().selectedPlaylistID
-        console.log("setting the image of playlist", playlistID)
         let token = getState().tokenData
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/image/${playlistID}`, config)

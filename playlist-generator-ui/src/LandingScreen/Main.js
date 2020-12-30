@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getToken, toggleLoader, getUserData } from '../actions/actionCreators'
+import { isEmpty } from '../utils'
 import User from '../SpotifyDataComponents/User'
 import AreYouSureModal from '../InfoComponents/AreYouSureModal'
 
@@ -11,20 +12,17 @@ class Main extends React.Component {
             getToken
         } = this.props
 
-        console.log("the props in component did mount", this.props)
-
         getToken()
     }
 
     componentDidUpdate(){
         const {
             toggleLoader, 
+            userData,
             getUserData
         } = this.props
 
-        console.log("The props in component did update", this.props)
-
-        if(this.props.tokenData && this.props.tokenData['Authorization'] && !this.props.loading){
+        if(this.props.tokenData && this.props.tokenData['Authorization'] && !this.props.loading && isEmpty(userData)){
             toggleLoader()
             getUserData()
         }
@@ -39,8 +37,11 @@ class Main extends React.Component {
 
         return <div>
             <AreYouSureModal />
-            Congrats! You've authenticated!
-            {loading ? <p>Standby while we fetch your spotify data ...</p> : ""}
+            {loading ? 
+                ( <div>
+                    <p>Standby while we fetch your spotify data ...</p>
+                  </div>
+                ) : ""}
             {error.message ? <p>There's been an error: {error.message}</p> : ""}
             {userData && userData.display_name ? <User /> : ""}
         </div>
