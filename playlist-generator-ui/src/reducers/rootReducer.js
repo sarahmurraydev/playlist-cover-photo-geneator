@@ -55,9 +55,21 @@ const setPlaylistData = (state, data) => {
         ...{
             userPlaylistData: data,
             // combine these playlists with the current array
+            // FYI: arr.concat method creates new array so we aren't mutating state here
             playlists: state.playlists.concat(data.items),
             // increment the offset each time the API call is made
             playlistOffset: state.playlistOffset + 20
+        }
+    }
+}
+
+const updatePlaylistData = (state, newPlaylistData) => {
+    return {
+        ...state,
+        ...{
+            playlists: state.playlists.map(playlist => {
+                return ( playlist.id == newPlaylistData.id ) ? newPlaylistData : playlist
+            }),
         }
     }
 }
@@ -100,6 +112,8 @@ const rootReducer = (state = initialState, action) => {
             return setPlaylistData(state, action.data)
         case types.MAKE_AND_SET_PHOTO_RESPONSE:
             return setPutPhotoResponse(state, action.data)
+        case types.UPDATE_PLAYLIST_DATA:
+            return updatePlaylistData(state, action.data)
         default: 
             return state
     }

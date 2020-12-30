@@ -77,6 +77,22 @@ export function getUserPlaylists(offset=0) {
     }
 }
 
+export function getUpdatedPlaylistData(id) {
+    // when a playlist has been updated, get the new data (i.e. new image)
+    return (dispatch, getState) => {
+        let token = getState().tokenData
+        let config = makeAuthHeader(token)
+        axios.get(`${API_URL}/playlist/${id}`, config)
+        .then(response => {
+            dispatch(closeModal())
+            dispatch(setAPIData(actionTypes.UPDATE_PLAYLIST_DATA, response.data))
+        })
+        .catch(err => {
+            dispatch(setAPIError(err))
+        })
+    }
+}
+
 export function makeAndSetPhoto(id) {
     return (dispatch, getState) => {
         console.log("getting the playlist ID:", id)
