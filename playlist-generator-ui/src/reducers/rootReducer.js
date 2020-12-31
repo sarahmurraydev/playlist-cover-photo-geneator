@@ -31,7 +31,6 @@ const toggleInlinePlaylistLoader = (state) => {
 }
 
 const toggleInlinePlaylistError = (state) => {
-    console.log("in here setting showPlaylistInlineError to", !state.showPlaylistInlineError)
     return {
         ...state, 
         ...{
@@ -159,7 +158,6 @@ const showInlineError = (state) => {
 
 
 const rootReducer = (state = initialState, action) => {
-    console.log("in the reducer- action", action.type)
     switch(action.type) {
         // UI ACTIONS:
         case types.TOGGLE_LOADER:
