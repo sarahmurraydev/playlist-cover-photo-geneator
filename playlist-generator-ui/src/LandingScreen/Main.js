@@ -19,7 +19,6 @@ class Main extends React.Component {
     render(){
         const {
             mainInlineLoader, 
-            error,
             showInlineError,
             userData
         } = this.props
@@ -50,7 +49,6 @@ class Main extends React.Component {
                 
                 >YES, show dogs</a>
             </p> : ""}
-            
             {userData && userData.display_name ? <User /> : ""}
         </div>
     }
@@ -62,7 +60,6 @@ const mapStateToProps = state => {
         tokenData: state.tokenData, 
         userData: state.userData,
         mainInlineLoader: state.mainInlineLoader,
-        error: state.error,
         showInlineError: state.showInlineError
     }
 }
