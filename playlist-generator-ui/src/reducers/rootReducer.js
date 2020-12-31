@@ -1,20 +1,13 @@
 import * as types from '../actions/actionTypes';
 import { initialState } from '../initialState';
 
-const setSpotifyToken = (state, tokenData) => {
-    return {
-        ...state,
-        ...{
-            tokenData: tokenData
-        }
-    }
-}
+// UI ACTIONS:
 
 const toggleLoader = (state) => {
     return {
         ...state,
         ...{
-            loading: !state.loading
+            mainInlineLoader: !state.mainInlineLoader
         }
     }
 }
@@ -36,6 +29,16 @@ const closeModal = (state) => {
             showPlaylistModal: false,
             // clear the selected playlist after successful response
             selectedPlaylist: {}
+        }
+    }
+}
+
+// API ACTIONS: 
+const setSpotifyToken = (state, tokenData) => {
+    return {
+        ...state,
+        ...{
+            tokenData: tokenData
         }
     }
 }
@@ -92,20 +95,29 @@ const setAPIError = (state, error) => {
     }
 }
 
+const showInlineError = (state) => {
+    return {
+        ...state, 
+        ...{
+            showInlineError: true
+        }
+    }
+}
+
 
 const rootReducer = (state = initialState, action) => {
     console.log("in reducer we are executing the following action:", action.type)
     switch(action.type) {
-        case types.GET_TOKEN:
-            return setSpotifyToken(state, action.tokenData)
+        // UI ACTIONS:
         case types.TOGGLE_LOADER:
             return toggleLoader(state)
         case types.OPEN_MODAL: 
             return openModal(state, action.selectedPlaylist)
         case types.CLOSE_MODAL: 
             return closeModal(state)
-        case types.SET_API_ERROR:
-            return setAPIError(state, action.error)
+        // API ACTIONS:
+        case types.SET_TOKEN_DATA:
+            return setSpotifyToken(state, action.tokenData)
         case types.SET_USER_DATA:
             return setUserData(state, action.data)
         case types.SET_PLAYLIST_DATA: 
@@ -114,6 +126,11 @@ const rootReducer = (state = initialState, action) => {
             return setPutPhotoResponse(state, action.data)
         case types.UPDATE_PLAYLIST_DATA:
             return updatePlaylistData(state, action.data)
+        // ERROR ACTIONS:
+        case types.ERROR_FROM_GET_USER_DATA: 
+         return showInlineError(state)
+        case types.SET_API_ERROR:
+         return setAPIError(state, action.error)
         default: 
             return state
     }

@@ -3,12 +3,20 @@ import { API_URL, SUCCESS } from '../constants'
 import { makeAuthHeader } from '../utils';
 import * as actionTypes from './actionTypes'
 
-export const getToken = (url) => {
-    let tokenString = url.split('/authorized/')[1]
-    let tokenReformated = tokenString.replace(/'/g, '"');
+export function getToken(url) {
+    return (dispatch, getState) => {
+        dispatch(toggleLoader())
+        let tokenString = url.split('/authorized/')[1]
+        let tokenReformated = tokenString.replace(/'/g, '"');
+        dispatch(setToken(tokenReformated))
+        dispatch(getUserData())
+    }
+}
+
+export const setToken = (token) => {
     return {
-        type: actionTypes.GET_TOKEN,
-        tokenData: JSON.parse(tokenReformated)
+        type: actionTypes.SET_TOKEN_DATA,
+        tokenData: JSON.parse(token)
     }
 }
 

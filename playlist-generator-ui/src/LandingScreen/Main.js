@@ -17,30 +17,26 @@ class Main extends React.Component {
         getToken()
     }
 
-    componentDidUpdate(){
-        const {
-            toggleLoader, 
-            userData,
-            getUserData
-        } = this.props
-
-        if(this.props.tokenData && this.props.tokenData['Authorization'] && !this.props.loading && isEmpty(userData)){
-            toggleLoader()
-            getUserData()
+    showAndLogAdditionalErrorDetails(){
+        console.log("There's been an API error")
+        if(this.props.showInLineError) {
+            console.log("There was an error on the /me endpoint, fetching the user data")
+            return <p>More specifically, our call to our API's /me endpoint failed. This could be due to our API or the spotify API. Please gives us a few mintues.</p>
         }
     }
 
     render(){
         const {
-            loading, 
+            mainInlineLoader, 
             error,
+            showInlineError,
             userData
         } = this.props
 
         return <div>
             <AreYouSureModal />
             <LoadingModal />
-            {loading ? 
+            {mainInlineLoader ? 
                 ( <div>
                     <p>Standby while we fetch your spotify data. This should just be a sec</p>
                     <Spinner animation="border" role="status" variant="success">
@@ -48,7 +44,8 @@ class Main extends React.Component {
                     </Spinner>
                   </div>
                 ) : ""}
-            {error.message ? <p>There's been an error: {error.message}</p> : ""}
+            {showInlineError ? <p>There's been an getting your spotify data. Please check back in a few minutes and try again.</p> : ""}
+            {error.message ? this.showAndLogAdditionalErrorDetails() : ""}
             {userData && userData.display_name ? <User /> : ""}
         </div>
     }
@@ -59,8 +56,9 @@ const mapStateToProps = state => {
     return {
         tokenData: state.tokenData, 
         userData: state.userData,
-        loading: state.loading,
-        error: state.error
+        mainInlineLoader: state.mainInlineLoader,
+        error: state.error,
+        showInlineError: state.showInlineError
     }
 }
 
