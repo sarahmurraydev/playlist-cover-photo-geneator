@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Spinner from 'react-bootstrap/Spinner'
 import { getToken, toggleLoader, getUserData } from '../actions/actionCreators'
 import { isEmpty } from '../utils'
 import User from '../SpotifyDataComponents/User'
@@ -41,7 +42,10 @@ class Main extends React.Component {
             <LoadingModal />
             {loading ? 
                 ( <div>
-                    <p>Standby while we fetch your spotify data ...</p>
+                    <p>Standby while we fetch your spotify data. This should just be a sec</p>
+                    <Spinner animation="border" role="status" variant="success">
+                        <span className="sr-only">Loading...</span>
+                    </Spinner>
                   </div>
                 ) : ""}
             {error.message ? <p>There's been an error: {error.message}</p> : ""}
