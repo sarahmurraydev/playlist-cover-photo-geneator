@@ -46,14 +46,17 @@ def get_album_cover_photos(album_id, auth):
     # TODO: handle if there are no items
     tracks = data["items"]
     for i in range(len(tracks)):
-        # get the 300 x 300 image url
-        # TODO: handle if there is no url (which there aren't for local files)
-        image_url = tracks[i]["track"]["album"]["images"][2]["url"]
-        # check if this image is in our array already 
-        if image_url in image_urls: 
-            print("{} is already in our list".format(image_url))
+        # check if 60x60 images exist 
+        if len(tracks[i]["track"]["album"]["images"]) > 0 and tracks[i]["track"]["album"]["images"][2]["url"]:
+            print("we have images")
+            image_url = tracks[i]["track"]["album"]["images"][2]["url"]
+            # check if this image is in our array already 
+            if image_url in image_urls: 
+                print("{} is already in our list".format(image_url))
+            else: 
+                image_urls.append(image_url)
         else: 
-            image_urls.append(image_url)
+            print("this track has no image, likely a local file")
 
     # once done, make a dictionary to return
     response_dict = { 
