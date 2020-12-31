@@ -20,14 +20,38 @@ body {
   padding: 10px;
 }
 
+.home {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+}
+
+.home-page-photo {
+  width: 200px;
+  border: 5px solid white;
+  margin: 0px auto 15px;
+}
+
 .mosaic-icon {
   margin-top: 3px;
   margin-right: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.auth-div {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.auth-link {
+  background-color: rgb(33, 175, 67);
+  color: white;
+  font-size: larger;
   font-weight: 800;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .bold-text {

@@ -1,14 +1,15 @@
 import React from 'react'
+import { API_URL } from '../constants'
 
 class Auth extends React.Component {
     render(){
-        return <div id="auth-div">
+        return <div className="auth-div">
             <a
-          className="App-link"
-          href="http://localhost:5000/"
+          className="auth-link"
+          href={API_URL}
           rel="noopener noreferrer"
         >
-          Authorize Your Spotify to Get Started
+          Authorize Your Spotify
         </a>
         </div>
     }
