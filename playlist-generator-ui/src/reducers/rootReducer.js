@@ -12,6 +12,15 @@ const toggleLoader = (state) => {
     }
 }
 
+const toggleLoadingModal = (state) => {
+    return {
+        ...state, 
+        ...{
+            showLoadingModal: !state.showLoadingModal
+        }
+    }
+}
+
 const openModal = (state, selectedPlaylist) => {
     return {
         ...state,
@@ -26,8 +35,15 @@ const closeModal = (state) => {
     return {
         ...state,
         ...{
-            showPlaylistModal: false,
-            // clear the selected playlist after successful response
+            showPlaylistModal: false
+        }
+    }
+}
+
+const clearSelectedPlaylist = (state) => {
+    return {
+        ...state,
+        ...{
             selectedPlaylist: {}
         }
     }
@@ -110,10 +126,14 @@ const rootReducer = (state = initialState, action) => {
         // UI ACTIONS:
         case types.TOGGLE_LOADER:
             return toggleLoader(state)
+        case types.TOGGLE_LOADING_MODAL:
+            return toggleLoadingModal(state)
         case types.OPEN_MODAL: 
             return openModal(state, action.selectedPlaylist)
         case types.CLOSE_MODAL: 
             return closeModal(state)
+        case types.CLEAR_SELECTED_PLAYLIST: 
+            return clearSelectedPlaylist(state)
         // API ACTIONS:
         case types.SET_TOKEN_DATA:
             return setSpotifyToken(state, action.tokenData)

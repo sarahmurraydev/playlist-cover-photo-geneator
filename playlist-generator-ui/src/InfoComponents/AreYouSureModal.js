@@ -2,20 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { makeAndSetPhoto, closeModal } from '../actions/actionCreators';
+import { makeAndSetPhoto, closeModal, clearSelectedPlaylist } from '../actions/actionCreators';
 
 class AreYouSureModal extends React.Component {
     render(){
         const {
             showPlaylistModal,
             selectedPlaylist,
-            handleCloseModal,
+            closeModalNoAPICall,
             handleCloseAndMakePhoto
         } = this.props
 
-        console.log("selected playlist:", selectedPlaylist)
-
-        return <Modal show={showPlaylistModal} onHide={handleCloseModal} className="playlist-modal">
+        return <Modal show={showPlaylistModal} onHide={closeModalNoAPICall} className="playlist-modal">
             <Modal.Header closeButton>
                 <Modal.Title>Are You Sure?</Modal.Title>
             </Modal.Header>
@@ -33,7 +31,7 @@ class AreYouSureModal extends React.Component {
                 >
                     OK
                 </Button>
-                <Button variant="secondary" onClick={handleCloseModal}>
+                <Button variant="secondary" onClick={closeModalNoAPICall}>
                     Close
                 </Button>
             </Modal.Footer>
@@ -50,9 +48,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleCloseModal: () => dispatch(closeModal()),
+        closeModalNoAPICall: () => {
+            dispatch(closeModal())
+            dispatch(clearSelectedPlaylist())
+        },
         handleCloseAndMakePhoto: (id) => {
-            console.log("want to set the photo of the playlist", id)
             dispatch(closeModal())
             dispatch(makeAndSetPhoto(id))
         }

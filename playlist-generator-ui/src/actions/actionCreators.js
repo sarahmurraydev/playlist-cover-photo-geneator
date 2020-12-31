@@ -26,6 +26,12 @@ export const toggleLoader = () => {
     }
 }
 
+export const toggleLoadingModal = () => {
+    return {
+        type: actionTypes.TOGGLE_LOADING_MODAL
+    }
+}
+
 export const openModal = (playlist) => {
     return {
         type: actionTypes.OPEN_MODAL,
@@ -36,6 +42,12 @@ export const openModal = (playlist) => {
 export const closeModal = () => {
     return {
         type: actionTypes.CLOSE_MODAL
+    }
+}
+
+export const clearSelectedPlaylist = () => {
+    return {
+        type: actionTypes.CLEAR_SELECTED_PLAYLIST
     }
 }
 
@@ -109,9 +121,19 @@ export function getUpdatedPlaylistData(id) {
     }
 }
 
+export function cleanupPostAPICall(showError=false, err={}) {
+    return (dispatch, getState) => {
+        dispatch(toggleLoadingModal())
+        dispatch(clearSelectedPlaylist())
+        if (showError) {
+            dispatch(setAPIError(err))
+        }
+    }
+}
+
 export function makeAndSetPhoto(id) {
     return (dispatch, getState) => {
-        // dispatch loader (modal you can't dismiss)
+        dispatch(toggleLoadingModal())
         let token = getState().tokenData
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/image/${id}`, config)
@@ -120,13 +142,14 @@ export function makeAndSetPhoto(id) {
                 // show success modal and make the get call 
                 dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO_RESPONSE, response.data))
                 dispatch(getUpdatedPlaylistData(id))
+                dispatch(cleanupPostAPICall())
             } else {
                  // show error modal
-                dispatch(setAPIError(response.data))
+                dispatch(cleanupPostAPICall(true, response.data))
             }
         })
         .catch(err => {
-            dispatch(setAPIError(err))
+            dispatch(cleanupPostAPICall(true, err))
         })
     }
 }
