@@ -44,6 +44,12 @@ body {
   max-width: 400px;
 }
 
+#profile-image {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
 .user-profile-picture {
   border: 5px solid white;
   width: 200px;
@@ -54,6 +60,8 @@ body {
 
 .blurb {
   width: 100%;
+  text-align: justify;
+  margin-top: 10px;
 }
 
 /* Playlist CSS */
@@ -120,28 +128,33 @@ body {
 }
 
 /* make playlists table list for phones */
-@media only screen and (max-width: 400px) {
+/* Potential additional - make cards more like a table for smaller screens */
+/* Personally, like how chrome renders this one phones so leaving this commented for now */
+/* @media only screen and (max-width: 400px) {
   .playlist-img {
     width: 75px;
     height: 75px;
-    /* border-radius: 20px; */
     border: 5px solid black;
   }
 
   .playlist-card {
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    height: 100px;
+    height: 150px;
     width: 200px;
+    padding: 5px;
+  }
+
+  .name-wrapper {
+    height: 24px;
   }
 
   .playlist-details {
-    margin-left: 20px;
+    margin: auto;
     font-size: small;
   }
-}
+} */
 
 /* Tool tip CSS */
 /* Tooltip container */
