@@ -12,7 +12,8 @@ class PlaylistGrid extends React.Component {
             userPlaylistData,
             playlists,
             getMyPlaylists,
-            isLoadingPlaylistData
+            isLoadingPlaylistData,
+            showPlaylistInlineError
         } = this.props
 
         if (userPlaylistData.items && playlists.length > 0) {
@@ -25,10 +26,11 @@ class PlaylistGrid extends React.Component {
         } else {
             return <div>
                 {isLoadingPlaylistData ? 
-                    <Spinner animation="border" role="status" variant="success"/> : 
-                    <button onClick={getMyPlaylists}> 
-                        Fetch my Playlists
-                    </button>
+                    <Spinner animation="border" role="status" variant="success"/> : (
+                        !showPlaylistInlineError ? <button onClick={getMyPlaylists}>Fetch my Playlists</button> : (
+                            <p>Sorry! There was an error getting your public playlists. Please try again later.</p>
+                        )
+                    )
                 }
             </div>
         }
@@ -39,7 +41,8 @@ const mapStateToProps = state => {
     return {
         userPlaylistData: state.userPlaylistData,
         playlists: state.playlists,
-        isLoadingPlaylistData: state.showPlaylistInlineLoader
+        isLoadingPlaylistData: state.showPlaylistInlineLoader,
+        showPlaylistInlineError: state.showPlaylistInlineError
     }
 }
 

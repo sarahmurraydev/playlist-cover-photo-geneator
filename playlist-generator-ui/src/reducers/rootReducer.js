@@ -30,6 +30,16 @@ const toggleInlinePlaylistLoader = (state) => {
     }
 }
 
+const toggleInlinePlaylistError = (state) => {
+    console.log("in here setting showPlaylistInlineError to", !state.showPlaylistInlineError)
+    return {
+        ...state, 
+        ...{
+            showPlaylistInlineError: !state.showPlaylistInlineError
+        }
+    }
+}
+
 const toggleErrorModal = (state) => {
     return {
         ...state,
@@ -149,6 +159,7 @@ const showInlineError = (state) => {
 
 
 const rootReducer = (state = initialState, action) => {
+    console.log("in the reducer- action", action.type)
     switch(action.type) {
         // UI ACTIONS:
         case types.TOGGLE_LOADER:
@@ -179,6 +190,8 @@ const rootReducer = (state = initialState, action) => {
         case types.UPDATE_PLAYLIST_DATA:
             return updatePlaylistData(state, action.data)
         // ERROR ACTIONS:
+        case types.TOGGLE_GET_PLAYLIST_ERROR:
+            return toggleInlinePlaylistError(state)
         case types.ERROR_FROM_GET_USER_DATA: 
          return showInlineError(state)
         case types.SET_API_ERROR:

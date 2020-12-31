@@ -32,6 +32,13 @@ export const togglePlaylistInLineLoader = () => {
     }
 }
 
+export const togglePlaylistInLineError = () => {
+    console.log("in here -- toggle error")
+    return {
+        type: actionTypes.TOGGLE_GET_PLAYLIST_ERROR
+    }
+}
+
 export const toggleLoadingModal = () => {
     return {
         type: actionTypes.TOGGLE_LOADING_MODAL
@@ -122,6 +129,9 @@ export function getUserPlaylists(offset=0) {
             dispatch(setAPIData(actionTypes.SET_PLAYLIST_DATA, response.data))
         })
         .catch(err => {
+            console.log("in here -- action creators")
+            dispatch(togglePlaylistInLineLoader())
+            dispatch(togglePlaylistInLineError())
             dispatch(setAPIError(err))
         })
     }

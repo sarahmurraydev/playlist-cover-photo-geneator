@@ -9,6 +9,7 @@ export const initialState = {
     playlistOffset: 0,
     mainInlineLoader: false,
     showPlaylistInlineLoader: false,
+    showPlaylistInlineError: false,
     showPlaylistModal: false,
     showLoadingModal: false,
     showInlineError: false,
