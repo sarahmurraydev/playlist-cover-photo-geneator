@@ -95,6 +95,7 @@ export function getUserData() {
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/me`, config)
         .then(response => {
+            console.log("response from /ME", response)
             dispatch(setAPIData(actionTypes.SET_USER_DATA, response.data))
             dispatch(toggleLoader())
         })

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import defaultUserImg from '../images/spotify-default-user-img.png'
 
 class ProfileImage extends React.Component {
     render(){
@@ -11,21 +12,21 @@ class ProfileImage extends React.Component {
         if (userImages.length > 0) {
             let imageSrc = userImages[0]["url"]
             if (imageSrc) {
-                return <div id="profile-image">
+                return <div className="profile-image">
                     <img src={imageSrc} alt="Profile Picture from User's Spotify Account" className="user-profile-picture"/>
                 </div>
             } else {
-                DefaultProfilePicture()
+                return DefaultProfilePicture()
             }
         } else {
-            DefaultProfilePicture()
+            return DefaultProfilePicture()
         }
     }
 }
 
 function DefaultProfilePicture() {
-    return <div id="profile-image">
-        <img src="#" alt="default profile - outline of person"/>
+    return <div className="profile-image">
+        <img src={defaultUserImg} alt="default profile - outline of person" className="user-profile-picture"/>
     </div>
 }
 

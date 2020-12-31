@@ -179,7 +179,7 @@ body {
   max-width: 400px;
 }
 
-#profile-image {
+.profile-image {
   display: flex;
   align-items: center;
   margin-right: 10px;
