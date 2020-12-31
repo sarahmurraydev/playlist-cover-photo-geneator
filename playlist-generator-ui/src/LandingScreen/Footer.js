@@ -6,13 +6,14 @@ const Footer = props => (
     <div className="footer">
         <h5 className="footer-title">Made by Sarah Murray</h5>
         <div className="footer-row icon-row">
-            {icons.map(i => {
+            {icons.map((icon, index) => {
                 return <a
                     className="footer-link"
-                    href={i.link}
+                    href={icon.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                ><Icon icon={i.component} className="footer-icon"/></a>
+                    key={index}
+                ><Icon icon={icon.component} className="footer-icon"/></a>
             })}
         </div>
         <div className="footer-row details-row">
