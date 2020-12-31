@@ -2,27 +2,26 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import { toggleErrorModal, clearSelectedPlaylist } from '../actions/actionCreators'
+import { clearSelectedPlaylist, toggleSuccessModal } from '../actions/actionCreators'
 
 class ErrorModal extends React.Component {
     render(){
         const {
             selectedPlaylist,
-            showErrorModal, 
+            showSuccessModal, 
             handleCloseModal
         } = this.props
 
-        return <Modal centered show={showErrorModal} backdrop="static" backdrop="static" className="modal">
+        return <Modal centered show={showSuccessModal} backdrop="static" className="modal">
             <Modal.Header style={{justifyContent: "center"}}>
-                <Modal.Title>Error</Modal.Title>
+                <Modal.Title>Success!</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-               There was an error generating the photo for your playlist:
+               We successfully generated and added your new cover photo to the playlist:
                 <p className="bold-text modal-playlist-name">{selectedPlaylist.name}</p>
-                You could try again with another playlist, or wait a few mintues and try again with this playlist.
             </Modal.Body>
             <Modal.Footer style={{justifyContent: "center"}}>
-                <Button onClick={handleCloseModal}>OK</Button>
+                <Button variant="success" onClick={handleCloseModal}>OK</Button>
             </Modal.Footer>
         </Modal>
     }
@@ -30,7 +29,7 @@ class ErrorModal extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        showErrorModal: state.showErrorModal,
+        showSuccessModal: state.showSuccessModal,
         selectedPlaylist: state.selectedPlaylist
     }
 }
@@ -39,7 +38,7 @@ const mapDispatchToProps = dispatch => {
     return {
         handleCloseModal: () => {
             dispatch(clearSelectedPlaylist())
-            dispatch(toggleErrorModal())
+            dispatch(toggleSuccessModal())
         }
     }
 }

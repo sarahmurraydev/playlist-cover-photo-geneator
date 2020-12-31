@@ -11,7 +11,8 @@ export const initialState = {
     showPlaylistModal: false,
     showLoadingModal: false,
     showInlineError: false,
-    showErrorModal: false
+    showErrorModal: false,
+    showSuccessModal: false
 };
 
 export default initialState

@@ -30,6 +30,15 @@ const toggleErrorModal = (state) => {
     }
 } 
 
+const toggleSuccessModal = (state) => {
+    return {
+        ...state, 
+        ...{
+            showSuccessModal: !state.showSuccessModal
+        }
+    }
+}
+
 const openModal = (state, selectedPlaylist) => {
     return {
         ...state,
@@ -145,6 +154,8 @@ const rootReducer = (state = initialState, action) => {
             return clearSelectedPlaylist(state)
         case types.TOGGLE_ERROR_MODAL: 
             return toggleErrorModal(state)
+        case types.TOGGLE_SUCCESS_MODAL: 
+            return toggleSuccessModal(state)
         // API ACTIONS:
         case types.SET_TOKEN_DATA:
             return setSpotifyToken(state, action.tokenData)

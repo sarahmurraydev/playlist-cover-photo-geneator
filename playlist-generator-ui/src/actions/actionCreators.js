@@ -38,6 +38,12 @@ export const toggleErrorModal = () => {
     }
 }
 
+export const toggleSuccessModal = () => {
+    return {
+        type: actionTypes.TOGGLE_SUCCESS_MODAL
+    }
+}
+
 export const openModal = (playlist) => {
     return {
         type: actionTypes.OPEN_MODAL,
@@ -135,7 +141,8 @@ export function cleanupPostAPICall(showError=false, err={}) {
             dispatch(toggleErrorModal())
             dispatch(setAPIError(err))
         } else {
-            dispatch(clearSelectedPlaylist())
+            // success, show the success modal
+            dispatch(toggleSuccessModal())
         }
     }
 }
