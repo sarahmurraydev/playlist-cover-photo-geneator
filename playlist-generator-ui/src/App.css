@@ -148,6 +148,21 @@ body {
   text-align: justify;
 }
 
+.faqs {
+  text-align: left;
+}
+
+.question {
+  margin: 10px 20px 10px;
+  padding: 10px;
+  border-bottom: 1px solid grey;
+}
+
+.faq-final-note {
+  margin: 30px auto;
+  padding: 10px;
+}
+
 /* User Info Boxes */
 
 .user {
