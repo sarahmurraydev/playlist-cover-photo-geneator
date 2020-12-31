@@ -1,7 +1,8 @@
 import { 
   BrowserRouter as Router,  
   Switch, 
-  Route
+  Route,
+  Link
 } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -40,7 +41,12 @@ function Home(){
         <img src={spotifyCoverPhoto} className="home-page-photo"/>
         <p>Into something more representive of your playlist, like this:</p>
         <img src={myCoverPhoto} className="home-page-photo"/>
-        <p>This app will make an N by N matrix of the current artists on your playlist. The app uses unique albums in the playlist and is limited by the spotify API's GET /tracks endpoint so only the first 100 songs will be included in making the photo. For more about the photo generating logic check out the FAQs.</p>
+        <p>
+          This app will make an N by N matrix of the current artists on your playlist. 
+          The app uses unique albums in the playlist and is limited by the spotify API's 
+          GET /tracks endpoint so only the first 100 songs will be included in making the photo. 
+          For more about the photo generating logic check out the&nbsp;<Link to="/faq" className="footer-link home-link">FAQs</Link>.
+        </p>
         <h4>Ready to start making cover photos? Authorize to get started:</h4>
         <Auth/>
     </div>
