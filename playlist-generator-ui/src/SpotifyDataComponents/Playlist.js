@@ -11,7 +11,10 @@ class Playlist extends React.Component {
             showPlaylistModal
         } = this.props 
 
-        let smallImg = this.props.playlist.images[0]['url'];
+        let smallImg = (
+                this.props.playlist.images.length > 0 && 
+                this.props.playlist.images[0]['url']
+            ) ? this.props.playlist.images[0]['url'] : "#";
 
         return <div className="playlist-card">
             <img src={smallImg} alt="playlist profile photo returned from spotify" className="playlist-img"/>
