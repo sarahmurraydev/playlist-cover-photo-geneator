@@ -2,28 +2,39 @@ import React from 'react'
 import { connect } from "react-redux"
 import PlaylistGrid from './PlaylistGrid'
 import ProfileImage from './ProfileImage'
-import AboutBlurb from '../InfoComponents/AboutBlurb'
-import NoPlaylistsBlurb from '../InfoComponents/NoPlaylistsBlurb'
+import { AboutBlurb, NoPlaylistsBlurb, GotPlaylistsBlurb } from '../InfoComponents/Blurbs'
+import { isEmpty } from '../utils'
 
 class User extends React.Component {
+    renderBlurbAfterGetPlaylists = (n) => {
+        // show a little blurb about what to do after we've fetched the user's playlists
+        return n > 0 ? <GotPlaylistsBlurb/> : <NoPlaylistsBlurb/> 
+    }
+
+    renderUserStats = () => {
+        
+    }
+
     render(){
         const {
             userData,
-            userPlaylistData
+            userPlaylistData,
+            playlists
         } = this.props
 
         let numPlaylists = userPlaylistData.total ? userPlaylistData.total : 0
-
-        console.log("total playlists:", userPlaylistData.total )
 
         return <div className="spotify-data">
             <div className="user">
                 <ProfileImage />
                 <div className="user-stats">
                     <h1>{userData.display_name}</h1>
-                    <h3>Followers: {userData.followers.total}</h3>
-                    <h3>Playlists: {numPlaylists}</h3>
-                    {userPlaylistData && numPlaylists > 0 ? <AboutBlurb/> : <NoPlaylistsBlurb/>}
+                    <h4>Followers: {userData.followers.total}</h4>
+                    {!isEmpty(userPlaylistData) ? <h4>Public Playlists: {numPlaylists}</h4> : "" }
+                    {!isEmpty(userPlaylistData) ? <h4>Currently Showing: {playlists.length}</h4> : "" }
+                    {!isEmpty(userPlaylistData) ? 
+                        this.renderBlurbAfterGetPlaylists(numPlaylists) : <AboutBlurb/>
+                    }
                 </div>
             </div>
             <PlaylistGrid />
@@ -34,7 +45,8 @@ class User extends React.Component {
 const mapStateToProps = (state) => {
     return {
         userData: state.userData, 
-        userPlaylistData: state.userPlaylistData
+        userPlaylistData: state.userPlaylistData,
+        playlists: state.playlists
     }
 }
 
