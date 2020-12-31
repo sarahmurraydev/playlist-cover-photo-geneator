@@ -8,6 +8,7 @@ import './App.css';
 import Auth from './LandingScreen/Auth'
 import Main from './LandingScreen/Main'
 import Header from './LandingScreen/Header'
+import Footer from './LandingScreen/Footer'
 import spotifyCoverPhoto from './images/spotify-generate-cover-photo.png'
 import myCoverPhoto from './images/generated-cover-photo.png'
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" component={Home}/>
         </Switch>
       </Router>
+      <Footer/>
     </div>
   )
 }

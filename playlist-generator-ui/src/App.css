@@ -27,6 +27,41 @@ body {
   text-align: left;
 }
 
+.footer {
+  background-color: #000000;
+  margin-top: 20px;
+}
+
+.footer-title {
+  padding-top: 10px;
+  margin-bottom: 0px;
+}
+
+.footer-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 1rem;
+  padding-bottom: 10px;
+}
+
+.icon-link {
+  color: white;
+}
+
+.footer-icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.icon-link:hover {
+  color: white;
+}
+
+.icon-link:visited{
+  color: white;
+}
+
 .home {
   max-width: 500px;
   margin: auto;
