@@ -12,7 +12,7 @@ class ErrorModal extends React.Component {
             handleCloseModal
         } = this.props
 
-        return <Modal centered show={showErrorModal} backdrop="static" backdrop="static" className="modal">
+        return <Modal centered show={showErrorModal} backdrop="static" className="modal">
             <Modal.Header style={{justifyContent: "center"}}>
                 <Modal.Title>Error</Modal.Title>
             </Modal.Header>

@@ -162,7 +162,7 @@ export function makeAndSetPhoto(id) {
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/image/${id}`, config)
         .then(response => {
-            if(response.data.status == SUCCESS) {
+            if(response.data.status === SUCCESS) {
                 // show success modal and make the get call 
                 dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO_RESPONSE, response.data))
                 dispatch(getUpdatedPlaylistData(id))

@@ -21,12 +21,10 @@ function App() {
       <Header/>
       <Router>
         <Switch>
-          <div className="app-body">
             <Route path={`/authorized/:token`} component={Main}/>
             <Route path="/faq" component={FAQ}/>
             <Route path="/disclaimer" component={Disclaimer}/>
             <Route exact path="/" component={Home}/>
-          </div>
         </Switch>
         <Footer/>
       </Router>
@@ -40,9 +38,9 @@ function Home(){
         <p>
           Turn your playlist cover photos from something boring spotify autogenerates like this:
         </p>
-        <img src={spotifyCoverPhoto} className="home-page-photo"/>
+        <img src={spotifyCoverPhoto} className="home-page-photo" alt="mosiac of 4 album cover photos in 2x2 squares"/>
         <p>Into something more representive of your playlist, like this:</p>
-        <img src={myCoverPhoto} className="home-page-photo"/>
+        <img src={myCoverPhoto} className="home-page-photo" alt="mosiac of 81 album cover photos in 9x9 squares"/>
         <p>
           This app will make an N by N matrix of the current artists on your playlist. 
           The app uses unique albums in the playlist and is limited by the spotify API's 

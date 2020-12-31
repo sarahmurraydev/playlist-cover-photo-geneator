@@ -25,7 +25,7 @@ class ProfileImage extends React.Component {
 
 function DefaultProfilePicture() {
     return <div id="profile-image">
-        <img src="#" alt="default profile picture - empty person image"/>
+        <img src="#" alt="default profile - outline of person"/>
     </div>
 }
 

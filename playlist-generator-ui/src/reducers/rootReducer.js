@@ -114,7 +114,7 @@ const updatePlaylistData = (state, newPlaylistData) => {
         ...state,
         ...{
             playlists: state.playlists.map(playlist => {
-                return ( playlist.id == newPlaylistData.id ) ? newPlaylistData : playlist
+                return ( playlist.id === newPlaylistData.id ) ? newPlaylistData : playlist
             }),
         }
     }
