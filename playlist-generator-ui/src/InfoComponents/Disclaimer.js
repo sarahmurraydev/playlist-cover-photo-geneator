@@ -19,10 +19,9 @@ const Disclaimer = () => {
                     rel="noopener noreferrer"
                     >here</a>&nbsp;and clicking "REMOVE ACCESS" for the app "Cover Photo Matrix Maker"
             </p>
-            <Link
-                    className="green-button-link app-link"
-                    to="/"
-                >Go Home</Link>
+            <Link to="/" className="green-button-link app-link">
+                Go Home
+            </Link>
         </div>
 }
 
