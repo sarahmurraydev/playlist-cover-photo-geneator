@@ -26,6 +26,12 @@ export const toggleLoader = () => {
     }
 }
 
+export const togglePlaylistInLineLoader = () => {
+    return {
+        type: actionTypes.TOGGLE_GET_PLAYLIST_LOADER
+    }
+}
+
 export const toggleLoadingModal = () => {
     return {
         type: actionTypes.TOGGLE_LOADING_MODAL
@@ -105,10 +111,12 @@ export function getUserPlaylists(offset=0) {
     // when we already have the user's first 20 playlists, 
     // we use the `next` url of the playlist object to get the offset (in MorePlaylistButton.js)
     return (dispatch, getState) => {
+        dispatch(togglePlaylistInLineLoader())
         let token = getState().tokenData
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/playlists?limit=20&offset=${offset}`, config)
         .then(response => {
+            dispatch(togglePlaylistInLineLoader())
             dispatch(setAPIData(actionTypes.SET_PLAYLIST_DATA, response.data))
         })
         .catch(err => {

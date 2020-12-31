@@ -8,6 +8,7 @@ export const initialState = {
     putPhotoResponseData: {},
     playlistOffset: 0,
     mainInlineLoader: false,
+    showPlaylistInlineLoader: false,
     showPlaylistModal: false,
     showLoadingModal: false,
     showInlineError: false,

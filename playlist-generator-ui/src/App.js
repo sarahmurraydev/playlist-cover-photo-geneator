@@ -21,10 +21,12 @@ function App() {
       <Header/>
       <Router>
         <Switch>
-          <Route path={`/authorized/:token`} component={Main}/>
-          <Route path="/faq" component={FAQ}/>
-          <Route path="/disclaimer" component={Disclaimer}/>
-          <Route exact path="/" component={Home}/>
+          <div className="app-body">
+            <Route path={`/authorized/:token`} component={Main}/>
+            <Route path="/faq" component={FAQ}/>
+            <Route path="/disclaimer" component={Disclaimer}/>
+            <Route exact path="/" component={Home}/>
+          </div>
         </Switch>
         <Footer/>
       </Router>

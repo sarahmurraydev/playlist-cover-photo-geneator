@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Spinner from 'react-bootstrap/Spinner'
 import { getUserPlaylists } from '../actions/actionCreators'
 import Playlist from './Playlist'
 import MorePlaylistsButton from './MorePlaylistsButton'
+
 
 class PlaylistGrid extends React.Component {
     render(){
@@ -10,7 +12,8 @@ class PlaylistGrid extends React.Component {
             userID,
             userPlaylistData,
             playlists,
-            getMyPlaylists
+            getMyPlaylists,
+            isLoadingPlaylistData
         } = this.props
 
         if (userPlaylistData.items && playlists.length > 0) {
@@ -27,9 +30,14 @@ class PlaylistGrid extends React.Component {
                 <MorePlaylistsButton />
                 </div>
         } else {
-            return <button onClick={getMyPlaylists}> 
-                Fetch my Playlists
-            </button>
+            return <div>
+                {isLoadingPlaylistData ? 
+                    <Spinner animation="border" role="status" variant="success"/> : 
+                    <button onClick={getMyPlaylists}> 
+                        Fetch my Playlists
+                    </button>
+                }
+            </div>
         }
     }
 }
@@ -38,7 +46,8 @@ const mapStateToProps = state => {
     return {
         userID: state.userData.id ? state.userData.id : 0,
         userPlaylistData: state.userPlaylistData,
-        playlists: state.playlists
+        playlists: state.playlists,
+        isLoadingPlaylistData: state.showPlaylistInlineLoader
     }
 }
 

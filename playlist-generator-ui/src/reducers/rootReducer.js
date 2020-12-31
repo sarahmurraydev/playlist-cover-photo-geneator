@@ -21,6 +21,15 @@ const toggleLoadingModal = (state) => {
     }
 }
 
+const toggleInlinePlaylistLoader = (state) => {
+    return {
+        ...state, 
+        ...{
+            showPlaylistInlineLoader: !state.showPlaylistInlineLoader
+        }
+    }
+}
+
 const toggleErrorModal = (state) => {
     return {
         ...state,
@@ -156,6 +165,8 @@ const rootReducer = (state = initialState, action) => {
             return toggleErrorModal(state)
         case types.TOGGLE_SUCCESS_MODAL: 
             return toggleSuccessModal(state)
+        case types.TOGGLE_GET_PLAYLIST_LOADER:
+            return toggleInlinePlaylistLoader(state)
         // API ACTIONS:
         case types.SET_TOKEN_DATA:
             return setSpotifyToken(state, action.tokenData)
