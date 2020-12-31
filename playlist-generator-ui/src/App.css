@@ -37,16 +37,25 @@ body {
   margin-bottom: 0px;
 }
 
-.footer-icons {
+.footer-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  
   margin-top: 1rem;
   padding-bottom: 10px;
 }
 
-.icon-link {
-  color: white;
+.footer-row.icon-row {
+  justify-content: space-around;
+  /* border-bottom: 1px solid white; */
+}
+
+.footer-row.details-row {
+  justify-content: center;
+}
+
+.footer-row.details-row, p {
+  margin: 5px 10px 0px;
 }
 
 .footer-icon {
@@ -54,11 +63,15 @@ body {
   width: 2rem;
 }
 
-.icon-link:hover {
+.footer-link {
   color: white;
 }
 
-.icon-link:visited{
+.footer-link:hover {
+  color: white;
+}
+
+.footer-link:visited{
   color: white;
 }
 
