@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Spinner from 'react-bootstrap/Spinner'
 import { getToken, toggleLoader, getUserData } from '../actions/actionCreators'
-import { isEmpty } from '../utils'
 import User from '../SpotifyDataComponents/User'
 import AreYouSureModal from '../InfoComponents/AreYouSureModal'
 import LoadingModal from '../InfoComponents/LoadingModal'
@@ -15,14 +14,6 @@ class Main extends React.Component {
         } = this.props
 
         getToken()
-    }
-
-    showAndLogAdditionalErrorDetails(){
-        console.log("There's been an API error")
-        if(this.props.showInLineError) {
-            console.log("There was an error on the /me endpoint, fetching the user data")
-            return <p>More specifically, our call to our API's /me endpoint failed. This could be due to our API or the spotify API. Please gives us a few mintues.</p>
-        }
     }
 
     render(){
@@ -44,8 +35,22 @@ class Main extends React.Component {
                     </Spinner>
                   </div>
                 ) : ""}
-            {showInlineError ? <p>There's been an getting your spotify data. Please check back in a few minutes and try again.</p> : ""}
-            {error.message ? this.showAndLogAdditionalErrorDetails() : ""}
+            {showInlineError ? 
+            <p className="inline-error">
+                There's been an getting your spotify data, our call to our API's /me endpoint failed. 
+                This could be due to our API or the spotify API. Please check back in a few minutes and try again. 
+                Our sincre apologies. In the meantime, wanna look at some dog photos?
+                <br></br>
+                <br></br>
+                <a
+                    className="show-dogs-link"
+                    href="https://unsplash.com/s/photos/dog"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                
+                >YES, show dogs</a>
+            </p> : ""}
+            
             {userData && userData.display_name ? <User /> : ""}
         </div>
     }

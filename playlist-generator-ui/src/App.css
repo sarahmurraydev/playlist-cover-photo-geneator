@@ -28,6 +28,17 @@ body {
   font-weight: 800;
 }
 
+.inline-error {
+  padding: 30px;
+}
+
+.show-dogs-link {
+  color: white;
+  background-color: rgb(33, 175, 67);
+  padding: 10px;
+  border-radius: 5px;
+}
+
 /* User Info Boxes */
 
 .user {
