@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_URL, SUCCESS } from '../constants'
-import { makeAuthHeader } from '../utils';
+import { makeAuthHeader, filterPlaylists } from '../utils';
 import * as actionTypes from './actionTypes'
 
 export function getToken(url) {
@@ -95,7 +95,6 @@ export function getUserData() {
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/me`, config)
         .then(response => {
-            console.log("response from /ME", response)
             dispatch(setAPIData(actionTypes.SET_USER_DATA, response.data))
             dispatch(toggleLoader())
         })
@@ -115,8 +114,10 @@ export function getUserPlaylists(offset=0) {
         dispatch(togglePlaylistInLineLoader())
         let token = getState().tokenData
         let config = makeAuthHeader(token)
+        let userData = getState().userData
         axios.get(`${API_URL}/playlists?limit=20&offset=${offset}`, config)
         .then(response => {
+            response['data']['items'] = filterPlaylists(response.data.items, userData.id)
             dispatch(togglePlaylistInLineLoader())
             dispatch(setAPIData(actionTypes.SET_PLAYLIST_DATA, response.data))
         })

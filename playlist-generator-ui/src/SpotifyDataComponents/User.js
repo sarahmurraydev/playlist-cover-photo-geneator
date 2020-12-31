@@ -33,7 +33,7 @@ class User extends React.Component {
                     {!isEmpty(userPlaylistData) ? <h4>Public Playlists: {numPlaylists}</h4> : "" }
                     {!isEmpty(userPlaylistData) ? <h4>Currently Showing: {playlists.length}</h4> : "" }
                     {!isEmpty(userPlaylistData) ? 
-                        this.renderBlurbAfterGetPlaylists(numPlaylists) : <AboutBlurb/>
+                        this.renderBlurbAfterGetPlaylists(playlists.length) : <AboutBlurb/>
                     }
                 </div>
             </div>
