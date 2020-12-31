@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner'
 
 class LoadingModal extends React.Component {
@@ -34,7 +33,7 @@ class LoadingModal extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        showLoadingModal: state.loading,
+        showLoadingModal: state.showLoadingModal,
         selectedPlaylist: state.selectedPlaylist
     }
 }
