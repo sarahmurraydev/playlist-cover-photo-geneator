@@ -8,7 +8,7 @@ const Footer = props => (
         <div className="footer-row icon-row">
             {icons.map((icon, index) => {
                 return <a
-                    className="footer-link"
+                    className="app-link"
                     href={icon.link}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -17,8 +17,8 @@ const Footer = props => (
             })}
         </div>
         <div className="footer-row details-row">
-            <Link to="/disclaimer" className="footer-link"><p>Disclaimer</p></Link>
-            <Link to="/faq" className="footer-link"><p>FAQs</p></Link>
+            <Link to="/disclaimer" className="app-link"><p>Disclaimer</p></Link>
+            <Link to="/faq" className="app-link"><p>FAQs</p></Link>
         </div>
     </div>
 )

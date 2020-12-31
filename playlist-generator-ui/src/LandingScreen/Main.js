@@ -25,7 +25,7 @@ class Main extends React.Component {
             userData
         } = this.props
 
-        return <div>
+        return <div className="main-body">
             <AreYouSureModal />
             <LoadingModal />
             <ErrorModal />

@@ -9,6 +9,10 @@ body {
   pointer-events: none;
 }
 
+.main-body {
+  min-height: 500px;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -64,15 +68,15 @@ body {
   width: 2rem;
 }
 
-.footer-link {
+.app-link {
   color: white;
 }
 
-.footer-link:hover {
+.app-link:hover {
   color: white;
 }
 
-.footer-link:visited{
+.app-link:visited{
   color: white;
 }
 
@@ -87,7 +91,7 @@ body {
   margin-bottom: 10px;
 }
 
-.home-link {
+.inline-link {
   text-decoration: underline;
   font-weight: 600;
 }
@@ -133,6 +137,13 @@ body {
   background-color: rgb(33, 175, 67);
   padding: 10px;
   border-radius: 5px;
+}
+
+.disclaimer-text {
+  font-size: 20px;
+  padding: 50px;
+  margin: 20px;
+  text-align: justify;
 }
 
 /* User Info Boxes */
