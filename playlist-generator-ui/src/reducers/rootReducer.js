@@ -21,6 +21,15 @@ const toggleLoadingModal = (state) => {
     }
 }
 
+const toggleErrorModal = (state) => {
+    return {
+        ...state,
+        ...{
+            showErrorModal: !state.showErrorModal
+        }
+    }
+} 
+
 const openModal = (state, selectedPlaylist) => {
     return {
         ...state,
@@ -134,6 +143,8 @@ const rootReducer = (state = initialState, action) => {
             return closeModal(state)
         case types.CLEAR_SELECTED_PLAYLIST: 
             return clearSelectedPlaylist(state)
+        case types.TOGGLE_ERROR_MODAL: 
+            return toggleErrorModal(state)
         // API ACTIONS:
         case types.SET_TOKEN_DATA:
             return setSpotifyToken(state, action.tokenData)

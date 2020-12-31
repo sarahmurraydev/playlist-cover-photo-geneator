@@ -12,12 +12,19 @@ body {
 .header {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   color: white;
   background-color: rgb(33, 175, 67);
   margin-bottom: 10px;
   padding: 10px;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  text-align: left;
 }
 
 .home {
@@ -244,6 +251,10 @@ body {
   opacity: 1;
 }
 
-.playlist-modal {
-  color: #282c34;
+.modal {
+  color: #000000;
+}
+
+.modal-playlist-name {
+  margin: 10px;
 }

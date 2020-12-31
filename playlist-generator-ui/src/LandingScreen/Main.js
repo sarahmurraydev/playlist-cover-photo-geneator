@@ -5,6 +5,7 @@ import { getToken, toggleLoader, getUserData } from '../actions/actionCreators'
 import User from '../SpotifyDataComponents/User'
 import AreYouSureModal from '../InfoComponents/AreYouSureModal'
 import LoadingModal from '../InfoComponents/LoadingModal'
+import ErrorModal from '../InfoComponents/ErrorModal'
 
 class Main extends React.Component {
 
@@ -26,6 +27,7 @@ class Main extends React.Component {
         return <div>
             <AreYouSureModal />
             <LoadingModal />
+            <ErrorModal />
             {mainInlineLoader ? 
                 ( <div>
                     <p>Standby while we fetch your spotify data. This should just be a sec</p>

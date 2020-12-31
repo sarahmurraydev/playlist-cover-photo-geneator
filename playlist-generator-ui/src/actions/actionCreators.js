@@ -32,6 +32,12 @@ export const toggleLoadingModal = () => {
     }
 }
 
+export const toggleErrorModal = () => {
+    return {
+        type: actionTypes.TOGGLE_ERROR_MODAL
+    }
+}
+
 export const openModal = (playlist) => {
     return {
         type: actionTypes.OPEN_MODAL,
@@ -124,9 +130,12 @@ export function getUpdatedPlaylistData(id) {
 export function cleanupPostAPICall(showError=false, err={}) {
     return (dispatch, getState) => {
         dispatch(toggleLoadingModal())
-        dispatch(clearSelectedPlaylist())
         if (showError) {
+            console.log("there was an error with the api!", err)
+            dispatch(toggleErrorModal())
             dispatch(setAPIError(err))
+        } else {
+            dispatch(clearSelectedPlaylist())
         }
     }
 }
