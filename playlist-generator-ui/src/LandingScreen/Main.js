@@ -46,7 +46,7 @@ class Main extends React.Component {
                 <br></br>
                 <br></br>
                 <a
-                    className="show-dogs-link"
+                    className="green-button-link"
                     href="https://unsplash.com/s/photos/dog"
                     target="_blank"
                     rel="noopener noreferrer"

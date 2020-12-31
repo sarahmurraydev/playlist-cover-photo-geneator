@@ -18,8 +18,8 @@ import Disclaimer from './InfoComponents/Disclaimer'
 function App() {
   return (
     <div className="App">
-      <Header/>
       <Router>
+      <Header/>
         <Switch>
             <Route path={`/authorized/:token`} component={Main}/>
             <Route path="/faq" component={FAQ}/>

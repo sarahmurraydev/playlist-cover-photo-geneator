@@ -132,11 +132,13 @@ body {
   padding: 30px;
 }
 
-.show-dogs-link {
+.green-button-link {
   color: white;
   background-color: rgb(33, 175, 67);
   padding: 10px;
   border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .disclaimer-text {
