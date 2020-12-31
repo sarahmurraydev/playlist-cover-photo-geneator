@@ -106,7 +106,6 @@ const showInlineError = (state) => {
 
 
 const rootReducer = (state = initialState, action) => {
-    console.log("in reducer we are executing the following action:", action.type)
     switch(action.type) {
         // UI ACTIONS:
         case types.TOGGLE_LOADER:

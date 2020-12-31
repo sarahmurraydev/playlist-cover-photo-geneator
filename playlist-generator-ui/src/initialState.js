@@ -7,9 +7,11 @@ export const initialState = {
     selectedPlaylist: {},
     putPhotoResponseData: {},
     playlistOffset: 0,
-    loading: false,
+    mainInlineLoader: false,
     showPlaylistModal: false,
-    showLoadingModal: false
+    showLoadingModal: false,
+    showInlineError: false,
+    showErrorModal: false
 };
 
 export default initialState

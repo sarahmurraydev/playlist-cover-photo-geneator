@@ -46,6 +46,12 @@ export const setAPIError = (error) => {
     }
 }
 
+export const setUserDataError = () => {
+    return {
+        type: actionTypes.ERROR_FROM_GET_USER_DATA
+    }
+}
+
 export const setAPIData = (type, data) => {
     return {
         type, 
@@ -64,6 +70,8 @@ export function getUserData() {
         })
         .catch(err => {
             dispatch(setAPIError(err))
+            dispatch(toggleLoader())
+            dispatch(setUserDataError())
         })
     }
 
@@ -104,12 +112,10 @@ export function getUpdatedPlaylistData(id) {
 export function makeAndSetPhoto(id) {
     return (dispatch, getState) => {
         // dispatch loader (modal you can't dismiss)
-        console.log("getting the playlist ID:", id)
         let token = getState().tokenData
         let config = makeAuthHeader(token)
         axios.get(`${API_URL}/image/${id}`, config)
         .then(response => {
-            console.log("got a response from PUT", response.data)
             if(response.data.status == SUCCESS) {
                 // show success modal and make the get call 
                 dispatch(setAPIData(actionTypes.MAKE_AND_SET_PHOTO_RESPONSE, response.data))
