@@ -9,19 +9,25 @@ body {
   pointer-events: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
   color: white;
+  background-color: rgb(33, 175, 67);
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.mosaic-icon {
+  margin-top: 3px;
+  margin-right: 5px;
 }
 
 .App-link {
   color: #61dafb;
+  font-weight: 800;
 }
 
 .bold-text {
