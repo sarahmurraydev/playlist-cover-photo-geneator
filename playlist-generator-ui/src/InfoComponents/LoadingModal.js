@@ -10,7 +10,7 @@ class LoadingModal extends React.Component {
             showLoadingModal
         } = this.props
 
-        return <Modal show={showLoadingModal} backdrop="static" className="playlist-modal">
+        return <Modal centered show={showLoadingModal} backdrop="static" className="playlist-modal">
             <Modal.Header style={{justifyContent: "center"}}>
                 <Modal.Title>Generating Your New Cover Photo</Modal.Title>
             </Modal.Header>
