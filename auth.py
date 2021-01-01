@@ -7,8 +7,8 @@ RESPONSE_TYPE = 'code'
 HEADER = 'application/x-www-form-urlencoded'
 REFRESH_TOKEN = ''
 
-CLIENT_ID = os.environ["CLIENT_ID"]
-CLIENT_SECRET = os.environ["CLIENT_SECRET"]
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 CALLBACK_URL = "http://localhost:5000/callback"
 SCOPES="ugc-image-upload playlist-modify-public"
 

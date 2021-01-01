@@ -1,17 +1,15 @@
-import os, json, sys
+import os
 from dotenv import load_dotenv
-from flask import Flask, jsonify, redirect, request, session
+from flask import Flask, redirect, request
 from flask_cors import CORS
 from image import make_image, get_spotify_images
 from auth import get_auth_url, get_token
 from spotify import get_me, get_playlist_items, get_album_cover_photos, put_playlist_photo, get_public_playlists, get_playlist
 
 # constants: 
-api_base_url: "https://localhost:5000/"
 ui_url = "http://localhost:3000"
 
-path = os.path.dirname(os.path.abspath(__file__))
-project_folder = os.path.expanduser(path)
+project_folder = os.path.expanduser('~/spotify-photo-generator')
 load_dotenv(os.path.join(project_folder, '.env'))
 
 app = Flask( __name__ )
