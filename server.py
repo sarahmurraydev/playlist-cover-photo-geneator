@@ -6,27 +6,31 @@ from image import make_image, get_spotify_images
 from auth import get_auth_url, get_token
 from spotify import get_me, get_playlist_items, get_album_cover_photos, put_playlist_photo, get_public_playlists, get_playlist
 
-# constants: 
-ui_url = "http://localhost:3000"
 
-project_folder = os.path.expanduser('~/spotify-photo-generator')
+
+project_folder = os.path.expanduser('~/mysite')
 load_dotenv(os.path.join(project_folder, '.env'))
 
 app = Flask( __name__ )
 cors = CORS(app)
 
+# constants:
+ui_url = "http://localhost:3000"
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+
 @app.route('/')
 def index():
-    # when the user hits the index endpoint, 
+    # when the user hits the index endpoint,
     # redirect them to spotfiy to approve our app
     # redirect url is unique to this app
-    app_auth_url = get_auth_url()
+    app_auth_url = get_auth_url(CLIENT_ID)
     return redirect(app_auth_url)
 
 @app.route('/callback')
 def callback():
     # use the auth code returned from app_auth_url to get a token
-    response = get_token(request.args.get('code'))
+    response = get_token(request.args.get('code'), CLIENT_ID, CLIENT_SECRET)
     # user is authorized if token attribute exists, and is not empty 
     if response['authorized']:
         return redirect("{}/authorized/{}".format(ui_url, response['token_data']))
@@ -67,7 +71,8 @@ def get_items(id):
   
 @app.route('/home')
 def home():
-    return "Hello World! Welcome to Sarah's Playlist Photo Generator App"
+    CLIENT_ID = os.getenv("CLIENT_ID")
+    return "Hello World! Welcome to Sarah's Playlist Photo Generator App. Here's the client ID: {}".format(CLIENT_ID)
 
 @app.route('/image/<id>')
 def image(id):

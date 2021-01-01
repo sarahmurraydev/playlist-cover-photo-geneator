@@ -6,28 +6,25 @@ SPOTIFY_URL_TOKEN = 'https://accounts.spotify.com/api/token/'
 RESPONSE_TYPE = 'code'   
 HEADER = 'application/x-www-form-urlencoded'
 REFRESH_TOKEN = ''
-
-CLIENT_ID = os.getenv("CLIENT_ID")
-CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 CALLBACK_URL = "http://localhost:5000/callback"
 SCOPES="ugc-image-upload playlist-modify-public"
 
 # authorization code for spotify app
-def get_auth_url():
+def get_auth_url(clientId):
     base_uri = "{}client_id={}&response_type=code&redirect_uri={}&scope={}"
-    return base_uri.format(SPOTIFY_URL_AUTH, CLIENT_ID, CALLBACK_URL, SCOPES)
+    return base_uri.format(SPOTIFY_URL_AUTH, clientId, CALLBACK_URL, SCOPES)
 
 
-def get_token(code):
+def get_token(code, clientId, clientSecret):
     body = {
         "grant_type": 'authorization_code',
         "code" : code,
         "redirect_uri": CALLBACK_URL,
-        "client_id": CLIENT_ID,
-        "client_secret": CLIENT_SECRET
+        "client_id": clientId,
+        "client_secret": clientSecret
     }
      
-    auth_str = f"{CLIENT_ID}:{CLIENT_SECRET}"
+    auth_str = f"{clientId}:{clientSecret}"
     encoded = base64.urlsafe_b64encode(auth_str.encode()).decode()
 
     headers = {"Content-Type" : HEADER, "Authorization" : "Basic {}".format(encoded)}
