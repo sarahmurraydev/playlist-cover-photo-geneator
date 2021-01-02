@@ -15,7 +15,7 @@ app = Flask( __name__ )
 cors = CORS(app)
 
 # constants:
-ui_url = "http://localhost:3000"
+ui_url = "https://mosaic-cover-photo-maker.vercel.app/"
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
