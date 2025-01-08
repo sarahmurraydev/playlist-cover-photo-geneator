@@ -22,3 +22,7 @@ Into this:
 
 ## UI Repo: 
 https://github.com/sarahmurraydev/playlist-cover-photo-geneator-ui
+
+## Python Anywhere
+If you need to get this up and running on python anywhere you will need to do complete a few steps first 
+- https://help.pythonanywhere.com/pages/environment-variables-for-web-apps/ 

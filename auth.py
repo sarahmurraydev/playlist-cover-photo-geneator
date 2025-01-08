@@ -6,7 +6,7 @@ SPOTIFY_URL_TOKEN = 'https://accounts.spotify.com/api/token/'
 RESPONSE_TYPE = 'code'   
 HEADER = 'application/x-www-form-urlencoded'
 REFRESH_TOKEN = ''
-CALLBACK_URL = "https://spotifymatrixphotomaker.pythonanywhere.comcallback"
+CALLBACK_URL = "https://spotifymatrixphotomaker.pythonanywhere.com/callback"
 SCOPES="ugc-image-upload playlist-modify-public"
 
 # authorization code for spotify app
